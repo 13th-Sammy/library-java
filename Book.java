@@ -37,10 +37,6 @@ public class Book {
         totalCopies=totalCopies+x;
     }
 
-    public void remTotalCopies(int x) {
-        totalCopies=totalCopies-x;
-    }
-
     public void addAvailCopies(int x) {
         availCopies=availCopies+x;
     }
