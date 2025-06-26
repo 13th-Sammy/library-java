@@ -1,5 +1,5 @@
 # Library Management System
- 
+
 This is a tool built in Java, that emulates a Library <br>
 Management System. <br>
 
@@ -9,8 +9,9 @@ library as well as those of individual users.
 
 # Features 
 
-- add book <br>
-- remove book <br>
+- View Books <br>
+- Add Book <br>
+- Remove Book
 - 
 
 # Project Structure
