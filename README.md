@@ -12,7 +12,7 @@ library as well as those of individual users.
 - View Books <br>
 - Add Book <br>
 - Remove Book <br>
-- 
+- Search Book <br>
 
 # Project Structure
 
