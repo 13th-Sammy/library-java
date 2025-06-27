@@ -40,11 +40,12 @@ Else If choice==8 > calls issueBook() <br>
 Else If choice==9 > calls returnBook() <br>
 
 Library.java :-
-- Has BookList HashMap to store all bookIds and Book objects. <br>
-- An addBook() method takes inputs bookID, title and author, <br>
-creates Book object and pushes it into BookList HashMap - bookID, book <br>
+- Has BookList HashMap to store all book Ids and Book objects. <br>
+- Has UserList HashMap to store all user IDs and User objects. <br>
 - A viewBooks() method that iterates over BookList and prints <br>
 attributes of all books. <br>
+- An addBook() method takes inputs bookID, title and author, <br>
+creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
 from the BookList HashMap. <br>
 - A searchBook() method that takes in title as input, iterates over <br>
