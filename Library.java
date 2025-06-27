@@ -5,47 +5,7 @@ public class Library {
     private final Scanner scan=new Scanner(System.in);
     private final HashMap<Long, Book> BookList=new HashMap<>();
 
-    public static void main(String args[]) {
-        Library lib=new Library();
-        OUTER:
-        while (true) {
-            lib.printMenu();
-            int choice=lib.scan.nextInt();
-            switch (choice) {
-                case 0 -> {
-                    break OUTER;
-                }
-                case 1 -> {
-                    lib.viewBooks();
-                }
-                case 2 -> {
-                    lib.addBook();
-                }
-                case 3 -> {
-                    lib.removeBook();
-                }
-                case 4 -> {
-                    lib.searchBook();
-                }
-                default -> {
-                    System.out.println("Invalid Choice");
-                    System.out.println();
-                }
-            }
-        }
-    }
-
-    private void printMenu() {
-        System.out.println("Welcome to the Library Management System !");
-        System.out.println("Press 0 - Close");
-        System.out.println("Press 1 - View Books");
-        System.out.println("Press 2 - Add Book");
-        System.out.println("Press 3 - Remove Book");
-        System.out.println("Press 4 - Search Book");
-        System.out.println();
-    }
-
-    private void viewBooks() {
+    public void viewBooks() {
         for(Book b:BookList.values()) {
             System.out.println("ID - " + b.getID());
             System.out.println("Title - " + b.getTitle());
@@ -56,7 +16,7 @@ public class Library {
         }
     }
 
-    private void addBook() {
+    public void addBook() {
         System.out.println("Enter Book ID -");
         long ID=scan.nextLong();
         scan.nextLine();
@@ -95,7 +55,7 @@ public class Library {
         System.out.println();
     }
 
-    private void removeBook() {
+    public void removeBook() {
         System.out.println("Enter Book ID to remove from System - ");
         long ID=scan.nextLong();
         if(BookList.containsKey(ID)) {
@@ -109,7 +69,7 @@ public class Library {
         }
     }
 
-    private void searchBook() {
+    public void searchBook() {
         System.out.println("Enter Title to Search - ");
         scan.nextLine();
         String title=scan.nextLine();
