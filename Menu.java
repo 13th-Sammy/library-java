@@ -67,6 +67,8 @@ class Menu {
             lib.returnBookL();
         });
         menuPanel.add(returnBookBtn);
+
+        frame.setContentPane(menuPanel);
     }
 
     public void showMenu() {

@@ -1,4 +1,3 @@
-
 public class Main {
     // private final Scanner scan=new Scanner(System.in);
     // private final Library lib=new Library();

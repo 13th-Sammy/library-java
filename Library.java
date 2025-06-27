@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -6,7 +7,7 @@ class Library {
     private final HashMap<Long, Book> BookList=new HashMap<>();
     private final HashMap<Long, User> UserList=new HashMap<>();
 
-    public void viewBooks() {
+    /*public void viewBooks() {
         for(Book b:BookList.values()) {
             System.out.println("ID - " + b.getID());
             System.out.println("Title - " + b.getTitle());
@@ -15,6 +16,10 @@ class Library {
             System.out.println("Available Copies - " + b.getAvailCopies());
             System.out.println();
         }
+    }*/
+
+    public Collection<Book> getBookList() {
+        return BookList.values();
     }
 
     public void addBook() {
