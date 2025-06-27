@@ -22,34 +22,20 @@ class Library {
         return BookList.values();
     }
 
-    public void addBook() {
-        System.out.println("Enter Book ID -");
-        long ID=scan.nextLong();
-        scan.nextLine();
-        System.out.println("Enter Book Name -");
-        String t=scan.nextLine().trim();
-        System.out.println("Enter Author Name");
-        String a=scan.nextLine().trim();
-
+    public String addBook(long ID, String t, String a) {
         for(Book b:BookList.values()) {
             if(b.getTitle().equalsIgnoreCase(t) && b.getAuthor().equalsIgnoreCase(a) && b.getID()!=ID) {
                 b.addTotalCopies(1);
                 b.addAvailCopies(1);
-                System.out.println("Title and Author already exist, added to existing Book ID - " + b.getID());
-                System.out.println();
-                return;
+                return ("Title and Author already exist, added to existing Book ID - " + b.getID());
             }
             else if(b.getTitle().equalsIgnoreCase(t) && b.getAuthor().equalsIgnoreCase(a) && b.getID()==ID) {
                 b.addTotalCopies(1);
                 b.addAvailCopies(1);
-                System.out.println("Added to existing Book ID - " + b.getID());
-                System.out.println();
-                return;
+                return ("Added to existing Book ID - " + b.getID());
             }
             else if(b.getID()==ID && (!b.getTitle().equalsIgnoreCase(t) || !b.getAuthor().equalsIgnoreCase(a))) {
-                System.out.println("Different Books cannot have same Book ID, not added.");
-                System.out.println();
-                return;
+                return ("Different Books cannot have same Book ID, not added.");
             }
         }
 
@@ -57,8 +43,7 @@ class Library {
         book.addAvailCopies(1);
         book.addTotalCopies(1);
         BookList.put(book.getID(), book);
-        System.out.println("Book Added successfully, Book ID - " + book.getID());
-        System.out.println();
+        return ("Book Added successfully, Book ID - " + book.getID());
     }
 
     public void removeBook() {

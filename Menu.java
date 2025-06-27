@@ -22,7 +22,12 @@ class Menu {
 
         JButton addBookBtn=new JButton("Add Book");
         addBookBtn.addActionListener(e -> {
-            lib.addBook();
+            String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -");
+            long ID=Long.parseLong(idStr);
+            String t=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -");
+            String a=JOptionPane.showInputDialog(menuPanel, "Enter Author Name");
+            String res=lib.addBook(ID, t, a);
+            JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(addBookBtn);
 

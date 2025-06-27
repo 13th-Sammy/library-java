@@ -101,7 +101,7 @@ viewBorrowed() and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
 - getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 
 
 ViewBooks.java :-
-- Handles the GUI for viewing books. <br>
+- Handles the GUI for viewing books. It is a JPanel. <br>
 - Creates a bookPanel to hold each Book info in a block inside. <br>
 - Iterates over Book collection and prints each book info in a block <br>
 inside bookPanel.
