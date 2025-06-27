@@ -42,9 +42,9 @@ Else If choice==9 > calls returnBookL()} <br>
 
 Menu.java :-
 - This creates the GUI menu with a button for each operation. <br>
-- Creates a Jframe, setLayout, add buttons, add actionListener <br>
+- Creates a menuPanel, setLayout, add buttons, add actionListener <br>
 for each button to pair it to an operation. <br>
-- If View Books clicked, calls viewBooks() <br>
+- If View Books clicked, shows ViewBooks panel <br>
 - If Add Book clicked, calls addBook() <br>
 - If Remove Book clicked, calls removeBook() <br>
 - If Search Book clicked, calls searchBook() <br>
@@ -57,8 +57,10 @@ for each button to pair it to an operation. <br>
 Library.java :-
 - Has BookList HashMap to store all book Ids and Book objects. <br>
 - Has UserList HashMap to store all user IDs and User objects. <br>
-- A viewBooks() method that iterates over BookList and prints <br>
-attributes of all books. <br>
+- {A viewBooks() method that iterates over BookList and prints <br>
+attributes of all books.} <br>
+- A getBookList() method that returns the values of HashMap id, book <br>
+as a Collection of Books.
 - An addBook() method takes inputs bookID, title and author, <br>
 creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
@@ -97,3 +99,10 @@ viewBorrowed() and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
 <=1 it removes the entry. <br>
 - viewBorrowed() to iterate over BooksBorrowed and print it. <br>
 - getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 
+
+ViewBooks.java :-
+- Handles the GUI for viewing books. <br>
+- Creates a bookPanel to hold each Book info in a block inside. <br>
+- Iterates over Book collection and prints each book info in a block <br>
+inside bookPanel.
+- Has a back button to switch panel back to menuPanel. <br>
