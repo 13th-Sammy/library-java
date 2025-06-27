@@ -43,7 +43,7 @@ class User {
 
     public void viewBorrowed() {
         for(long id:BooksBorrowed.keySet()) {
-            System.out.println("Book ID - " + id);
+            System.out.println("Book ID Borrowed - " + id);
             System.out.println("Copies Borrowed - " + BooksBorrowed.get(id));
             System.out.println();
         }

@@ -96,12 +96,10 @@ class Library {
     public void registerUser() {
         System.out.println("Enter User ID");
         long uid=scan.nextLong();
-        for(Long u:UserList.keySet()) {
-            if(uid==u) {
-                System.out.println("Uid already exists, user not added");
-                System.out.println();
-                return;
-            }
+        if(UserList.containsKey(uid)) {
+            System.out.println("Uid already exists, user not added");
+            System.out.println();
+            return;
         }
         System.out.println("Enter User Name");
         scan.nextLine();
@@ -111,5 +109,20 @@ class Library {
         UserList.put(user.getUid(), user);
         System.out.println("User added successfully, Uid - " + user.getUid());
         System.out.println();
+    }
+
+    public void viewUser() {
+        System.out.println("Enter Uid");
+        long uid=scan.nextLong();
+        if(UserList.containsKey(uid)) {
+            System.out.println();
+            System.out.println("Name - " + UserList.get(uid).getName());
+            System.out.println();
+            UserList.get(uid).viewBorrowed();
+        }
+        else {
+            System.out.println("Uid does not exist");
+            System.out.println();
+        }
     }
 }
