@@ -22,16 +22,21 @@ class User {
         BooksBorrowed.put(id, BooksBorrowed.getOrDefault(id, 0)+n);
     }
 
-    public int returnBook(long id) {
+    public int returnBook(long id, int n) {
         if(BooksBorrowed.containsKey(id)) {
             int count=BooksBorrowed.get(id);
-            if(count>1) {
-                BooksBorrowed.put(id, count-1);
+            if(count-n>0) {
+                BooksBorrowed.put(id, count-n);
+                return 1;
+            }
+            else if(count-n==0) {
+                BooksBorrowed.remove(id);
                 return 1;
             }
             else {
-                BooksBorrowed.remove(id);
-                return 1;
+                System.out.println("User does not have so many copies, not returned");
+                System.out.println();
+                return -1;
             }
         }
         else {
