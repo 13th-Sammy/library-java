@@ -39,6 +39,9 @@ public class Main {
                 case 7 -> {
                     lib.issueBook();
                 }
+                case 8 -> {
+                    lib.returnBookL();
+                }
                 default -> {
                     System.out.println("Invalid Choice");
                     System.out.println();
@@ -57,6 +60,7 @@ public class Main {
         System.out.println("Press 5 - Register User");
         System.out.println("Press 6 - View User");
         System.out.println("Press 7 - Issue Book");
+        System.out.println("Press 8 - Return Book");
         System.out.println();
     }
 }

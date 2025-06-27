@@ -16,6 +16,7 @@ library as well as those of individual users.
 - Register User <br>
 - View User <br>
 - Issue Book <br>
+- Return Book <br>
 
 # Project Structure
 
@@ -34,6 +35,7 @@ Else If choice==4 > calls searchBook() <br>
 Else If choice==5 > calls registerUser() <br>
 Else If choice==6 > calls viewUser() <br>
 Else If choice==7 > calls issueBook() <br>
+Else If choice==8 > calls returnBook() <br>
 
 Library.java :-
 - Has BookList HashMap to store all bookIds and Book objects. <br>
@@ -49,8 +51,13 @@ BookList and prints attributes of Book if found. <br>
 creates User object, then pushes it into UserList HashMap - uid, user. <br>
 - A viewUser() method that takes uid and shows username and books borrowed. <br>
 - A issueBook() method which takes in uid and book id, and adds the book id <br>
-with count+1 in BorrwedBooks HashMap of user object with matching uid - by <br>
-calling user object.borrrowBook(bid) <br>
+with count+1 in BorrowedBooks HashMap of user object with matching uid - by <br>
+calling user object.borrrowBook(bid). Updates available copies of book object <br>
+with matching bid. <br>
+- A returnBookL() method which takes in uid and book id, and adds the book id <br>
+with count-1 in BorrowedBooks HashMap of user object with matching uid - by <br>
+calling user object.returnBook(bid). Updates available copies of book object <br>
+with matching bid. <br>
 
 Book.java :- <br>
 - Serves as the holder of all information regarding one book. <br>
