@@ -18,8 +18,8 @@ class User {
         return name;
     }
 
-    public void borrowBook(long id) {
-        BooksBorrowed.put(id, BooksBorrowed.getOrDefault(id, 0)+1);
+    public void borrowBook(long id, int n) {
+        BooksBorrowed.put(id, BooksBorrowed.getOrDefault(id, 0)+n);
     }
 
     public int returnBook(long id) {

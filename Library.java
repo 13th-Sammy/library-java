@@ -149,13 +149,15 @@ class Library {
             System.out.println();
             return;
         }
-        if(BookList.get(bid).getAvailCopies()<1) {
-            System.out.println("No available copies");
+        System.out.println("Enter number of copies to borrow");
+        int noOfCopies=scan.nextInt();
+        if(BookList.get(bid).getAvailCopies()-noOfCopies<0) {
+            System.out.println("Not enough available copies");
             System.out.println();
             return;
         }
-        BookList.get(bid).remAvailCopies(1);
-        UserList.get(uid).borrowBook(bid);
+        BookList.get(bid).remAvailCopies(noOfCopies);
+        UserList.get(uid).borrowBook(bid, noOfCopies);
         System.out.println("Book successfully borrowed");
         System.out.println();
     }
@@ -175,9 +177,11 @@ class Library {
             System.out.println();
             return;
         }
-        int res=UserList.get(uid).returnBook(bid);
+        System.out.println("Enter number of copies to return");
+        int noOfCopies=scan.nextInt();
+        int res=UserList.get(uid).returnBook(bid, noOfCopies);
         if(res==1) {
-            BookList.get(bid).addAvailCopies(1);
+            BookList.get(bid).addAvailCopies(noOfCopies);
             System.out.println("Book sucessfully returned");
             System.out.println();
         }
