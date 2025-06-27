@@ -96,10 +96,6 @@ class Library {
     public void registerUser() {
         System.out.println("Enter User ID");
         long uid=scan.nextLong();
-        System.out.println("Enter User Name");
-        scan.nextLine();
-        String name=scan.nextLine();
-
         for(Long u:UserList.keySet()) {
             if(uid==u) {
                 System.out.println("Uid already exists, user not added");
@@ -107,6 +103,9 @@ class Library {
                 return;
             }
         }
+        System.out.println("Enter User Name");
+        scan.nextLine();
+        String name=scan.nextLine();
 
         User user=new User(uid, name);
         UserList.put(user.getUid(), user);
