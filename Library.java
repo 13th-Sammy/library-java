@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 class Library {
     private final Scanner scan=new Scanner(System.in);
     private final HashMap<Long, Book> BookList=new HashMap<>();
+    private final ArrayList<User> UserList=new ArrayList<>();
 
     public void viewBooks() {
         for(Book b:BookList.values()) {
@@ -90,5 +92,26 @@ class Library {
             System.out.println("No such Book exists");
             System.out.println();
         }
+    }
+
+    public void registerUser() {
+        System.out.println("Enter User ID");
+        long uid=scan.nextLong();
+        System.out.println("Enter User Name");
+        scan.nextLine();
+        String name=scan.nextLine();
+
+        for(User u:UserList) {
+            if(uid==u.getUid()) {
+                System.out.println("Uid already exists, user not added");
+                System.out.println();
+                return;
+            }
+        }
+
+        User user=new User(uid, name);
+        UserList.add(user);
+        System.out.println("User added successfully, Uid - " + user.getUid());
+        System.out.println();
     }
 }
