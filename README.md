@@ -16,10 +16,21 @@ library as well as those of individual users.
 
 # Project Structure
 
-Library.java :-
-- This is our program entry point and has a main method. <br>
-- Has BookList HashMap to store all bookIds and Book objects. <br>
+Main.java :-
+- This is the entry point for our program and has a main <br>
+function - main() calls run() which runs the program. <br>
 - A printMenu() function prints the user menu. <br>
+- A run() function acts as the program runner. It has <br> 
+an infinite while loop. Inside, it calls printMenu() and <br>
+takes the user choice in variable choice. <br>
+If choice==0 > break out of loop and end program. <br>
+Else If choice==1 > calls viewBooks() <br>
+Else If choice==2 > calls addBook() <br>
+Else If choice==3 > calls removeBook() <br>
+Else If choice==4 > calls searchBook() <br>
+
+Library.java :-
+- Has BookList HashMap to store all bookIds and Book objects. <br>
 - An addBook() method takes inputs bookID, title and author, <br>
 creates Book object and pushes it into BookList HashMap. <br>
 - A viewBooks() method that iterates over BookList and prints <br>
@@ -28,13 +39,6 @@ attributes of all books. <br>
 from the BookList HashMap. <br>
 - A searchBook() method that takes in title as input, iterates over <br>
 BookList and prints attributes of Book if found. <br>
-- The main function has an infinite while loop. Inside, it <br> 
-calls printMenu() and takes the user choice in variable choice. <br>
-If choice==0 > break out of loop and end program. <br>
-Else If choice==1 > calls viewBooks() <br>
-Else If choice==2 > calls addBook() <br>
-Else If choice==3 > calls removeBook() <br>
-Else If choice==4 > calls searchBook() <br>
 
 Book.java :- <br>
 - Serves as the holder of all information regarding one book. <br>
@@ -43,4 +47,13 @@ Book.java :- <br>
 - Has getters for everything, and setters for totalCopies and availCopies.
 
 User.java :-
-- 
+- Serves as the holder of all information regarding one user. <br>
+- Has attributes uid, name, and a HashMap BooksBorrowed for <br>
+bookID and copies borrowed. <br>
+- Has getters for name and uid. Has borrowBook(), returnBook() <br>
+viewBorrowed() and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
+- borrowBook() adds id, copies+1 to BooksBorrowed. <br>
+- returnBook() adds id, copies-1 to BooksBorrowed and if copies is <br>
+<=1 it removes the entry. <br>
+- viewBorrowed() to iterate over BooksBorrowed and print it. <br>
+- getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 

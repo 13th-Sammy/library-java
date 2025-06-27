@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Library {
+class Library {
     private final Scanner scan=new Scanner(System.in);
     private final HashMap<Long, Book> BookList=new HashMap<>();
 

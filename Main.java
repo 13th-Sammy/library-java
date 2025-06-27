@@ -5,26 +5,30 @@ public class Main {
     private final Library lib=new Library();
 
     public static void main(String args[]) {
-        Main main=new Main();
+        Main program=new Main();
+        program.run();
+    }
+
+    private void run() {
         OUTER:
         while (true) {
-            main.printMenu();
-            int choice=main.scan.nextInt();
+            printMenu();
+            int choice=scan.nextInt();
             switch (choice) {
                 case 0 -> {
                     break OUTER;
                 }
                 case 1 -> {
-                    main.lib.viewBooks();
+                    lib.viewBooks();
                 }
                 case 2 -> {
-                    main.lib.addBook();
+                    lib.addBook();
                 }
                 case 3 -> {
-                    main.lib.removeBook();
+                    lib.removeBook();
                 }
                 case 4 -> {
-                    main.lib.searchBook();
+                    lib.searchBook();
                 }
                 default -> {
                     System.out.println("Invalid Choice");
