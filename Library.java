@@ -126,6 +126,14 @@ class Library {
         }
     }
 
+    public void viewAllUsers() {
+        for(User u:UserList.values()) {
+            System.out.println("Uid - " + u.getUid() + ", Name - " + u.getName());
+            System.out.println();
+            u.viewBorrowed();
+        }
+    }
+
     public void issueBook() {
         System.out.println("Enter uid");
         long uid=scan.nextLong();

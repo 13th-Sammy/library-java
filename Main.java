@@ -37,9 +37,12 @@ public class Main {
                     lib.viewUser();
                 }
                 case 7 -> {
-                    lib.issueBook();
+                    lib.viewAllUsers();
                 }
                 case 8 -> {
+                    lib.issueBook();
+                }
+                case 9 -> {
                     lib.returnBookL();
                 }
                 default -> {
@@ -59,8 +62,9 @@ public class Main {
         System.out.println("Press 4 - Search Book");
         System.out.println("Press 5 - Register User");
         System.out.println("Press 6 - View User");
-        System.out.println("Press 7 - Issue Book");
-        System.out.println("Press 8 - Return Book");
+        System.out.println("Press 7 - View All Users");
+        System.out.println("Press 8 - Issue Book");
+        System.out.println("Press 9 - Return Book");
         System.out.println();
     }
 }
