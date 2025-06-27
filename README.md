@@ -49,7 +49,8 @@ BookList and prints attributes of Book if found. <br>
 creates User object, then pushes it into UserList HashMap - uid, user. <br>
 - A viewUser() method that takes uid and shows username and books borrowed. <br>
 - A issueBook() method which takes in uid and book id, and adds the book id <br>
-with count+1 in BorrwedBooks HashMap of user object with matching uid. <br>
+with count+1 in BorrwedBooks HashMap of user object with matching uid - by <br>
+calling user object.borrrowBook(bid) <br>
 
 Book.java :- <br>
 - Serves as the holder of all information regarding one book. <br>
