@@ -23,8 +23,8 @@ library as well as those of individual users.
 
 Main.java :-
 - This is the entry point for our program and has a main <br>
-function - main() creates a Menu object which launches the Menu <br>
-that runs the program. {main() calls run() which runs the program.} <br>
+function - main() creates a Menu object which launches the menu <br>
+that runs the program. {main() calls run() which runs the program. <br>
 - A printMenu() function prints the user menu. <br>
 - A run() function acts as the program runner. It has <br> 
 an infinite while loop. Inside, it calls printMenu() and <br>
@@ -38,7 +38,7 @@ Else If choice==5 > calls registerUser() <br>
 Else If choice==6 > calls viewUser() <br>
 Else If choice==7 > calls viewAllUsers() <br>
 Else If choice==8 > calls issueBook() <br>
-Else If choice==9 > calls returnBookL() <br>
+Else If choice==9 > calls returnBookL()} <br>
 
 Menu.java :-
 - This creates the GUI menu with a button for each operation. <br>
