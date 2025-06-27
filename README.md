@@ -56,11 +56,11 @@ creates User object, then pushes it into UserList HashMap - uid, user. <br>
 - A viewAllUsers() method that iterates over UserList and prints all users <br>
 and borrowed Books by calling user object.viewBorrowed(). <br>
 - A issueBook() method which takes in uid and book id, and adds the book id <br>
-with count+1 in BorrowedBooks HashMap of user object with matching uid - by <br>
+with count+noOfCopies in BorrowedBooks HashMap of user object with matching uid - by <br>
 calling user object.borrrowBook(bid). Updates available copies of book object <br>
 with matching bid. <br>
 - A returnBookL() method which takes in uid and book id, and adds the book id <br>
-with count-1 in BorrowedBooks HashMap of user object with matching uid - by <br>
+with count-noOfCopies in BorrowedBooks HashMap of user object with matching uid - by <br>
 calling user object.returnBook(bid). Updates available copies of book object <br>
 with matching bid. <br>
 
