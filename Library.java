@@ -73,7 +73,7 @@ class Library {
     public void searchBook() {
         System.out.println("Enter Title to Search - ");
         scan.nextLine();
-        String title=scan.nextLine();
+        String title=scan.nextLine().trim();
         System.out.println();
         boolean found=false;
         for(Book b:BookList.values()) {
@@ -103,7 +103,7 @@ class Library {
         }
         System.out.println("Enter User Name");
         scan.nextLine();
-        String name=scan.nextLine();
+        String name=scan.nextLine().trim();
 
         User user=new User(uid, name);
         UserList.put(user.getUid(), user);
