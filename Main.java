@@ -36,6 +36,9 @@ public class Main {
                 case 6 -> {
                     lib.viewUser();
                 }
+                case 7 -> {
+                    lib.issueBook();
+                }
                 default -> {
                     System.out.println("Invalid Choice");
                     System.out.println();
@@ -53,6 +56,7 @@ public class Main {
         System.out.println("Press 4 - Search Book");
         System.out.println("Press 5 - Register User");
         System.out.println("Press 6 - View User");
+        System.out.println("Press 7 - Issue Book");
         System.out.println();
     }
 }
