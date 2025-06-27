@@ -74,6 +74,7 @@ User.java :-
 - Serves as the holder of all information regarding one user. <br>
 - Has attributes uid, name, and a HashMap BooksBorrowed for <br>
 bookID and copies borrowed. <br>
+- Has parameterised constructor for uid and name. <br>
 - Has getters for name and uid. Has borrowBook(), returnBook() <br>
 viewBorrowed() and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
 - borrowBook() adds id, copies+1 to BooksBorrowed. <br>
