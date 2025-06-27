@@ -1,11 +1,10 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 class Library {
     private final Scanner scan=new Scanner(System.in);
     private final HashMap<Long, Book> BookList=new HashMap<>();
-    private final ArrayList<User> UserList=new ArrayList<>();
+    private final HashMap<Long, User> UserList=new HashMap<>();
 
     public void viewBooks() {
         for(Book b:BookList.values()) {
@@ -101,8 +100,8 @@ class Library {
         scan.nextLine();
         String name=scan.nextLine();
 
-        for(User u:UserList) {
-            if(uid==u.getUid()) {
+        for(Long u:UserList.keySet()) {
+            if(uid==u) {
                 System.out.println("Uid already exists, user not added");
                 System.out.println();
                 return;
@@ -110,7 +109,7 @@ class Library {
         }
 
         User user=new User(uid, name);
-        UserList.add(user);
+        UserList.put(user.getUid(), user);
         System.out.println("User added successfully, Uid - " + user.getUid());
         System.out.println();
     }

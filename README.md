@@ -28,17 +28,20 @@ Else If choice==1 > calls viewBooks() <br>
 Else If choice==2 > calls addBook() <br>
 Else If choice==3 > calls removeBook() <br>
 Else If choice==4 > calls searchBook() <br>
+Else If choice==5 > calls registerUser() <br>
 
 Library.java :-
 - Has BookList HashMap to store all bookIds and Book objects. <br>
 - An addBook() method takes inputs bookID, title and author, <br>
-creates Book object and pushes it into BookList HashMap. <br>
+creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A viewBooks() method that iterates over BookList and prints <br>
 attributes of all books. <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
 from the BookList HashMap. <br>
 - A searchBook() method that takes in title as input, iterates over <br>
 BookList and prints attributes of Book if found. <br>
+- A registerUser() method that takes inputs uid and user name and <br>
+creates User object, then pushes it into UserList HashMap - uid, user. <br>
 
 Book.java :- <br>
 - Serves as the holder of all information regarding one book. <br>
