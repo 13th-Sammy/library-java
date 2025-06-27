@@ -125,4 +125,30 @@ class Library {
             System.out.println();
         }
     }
+
+    public void issueBook() {
+        System.out.println("Enter uid");
+        long uid=scan.nextLong();
+        if(!UserList.containsKey(uid)) {
+            System.out.println("Uid does not exist");
+            System.out.println();
+            return;
+        }
+        System.out.println("Enter Book ID to borrow"); 
+        long bid=scan.nextLong();
+        if(!BookList.containsKey(bid)) {
+            System.out.println("Book ID does not exist");
+            System.out.println();
+            return;
+        }
+        if(BookList.get(bid).getAvailCopies()<1) {
+            System.out.println("No available copies");
+            System.out.println();
+            return;
+        }
+        BookList.get(bid).remAvailCopies(1);
+        UserList.get(uid).borrowBook(bid);
+        System.out.println("Book successfully borrowed");
+        System.out.println();
+    }
 }
