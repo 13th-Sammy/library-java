@@ -1,15 +1,16 @@
-import java.util.Scanner;
 
 public class Main {
-    private final Scanner scan=new Scanner(System.in);
-    private final Library lib=new Library();
+    // private final Scanner scan=new Scanner(System.in);
+    // private final Library lib=new Library();
 
     public static void main(String args[]) {
-        Main program=new Main();
-        program.run();
+        /*Main program=new Main();
+        program.run();*/
+        Menu menu=new Menu();
+        menu.showMenu();
     }
 
-    private void run() {
+    /*private void run() {
         OUTER:
         while (true) {
             printMenu();
@@ -66,5 +67,5 @@ public class Main {
         System.out.println("Press 8 - Issue Book");
         System.out.println("Press 9 - Return Book");
         System.out.println();
-    }
+    }*/
 }

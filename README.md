@@ -23,7 +23,8 @@ library as well as those of individual users.
 
 Main.java :-
 - This is the entry point for our program and has a main <br>
-function - main() calls run() which runs the program. <br>
+function - main() creates a Menu object which launches the Menu <br>
+that runs the program. {main() calls run() which runs the program.} <br>
 - A printMenu() function prints the user menu. <br>
 - A run() function acts as the program runner. It has <br> 
 an infinite while loop. Inside, it calls printMenu() and <br>
@@ -37,7 +38,21 @@ Else If choice==5 > calls registerUser() <br>
 Else If choice==6 > calls viewUser() <br>
 Else If choice==7 > calls viewAllUsers() <br>
 Else If choice==8 > calls issueBook() <br>
-Else If choice==9 > calls returnBook() <br>
+Else If choice==9 > calls returnBookL() <br>
+
+Menu.java :-
+- This creates the GUI menu with a button for each operation. <br>
+- Creates a Jframe, setLayout, add buttons, add actionListener <br>
+for each button to pair it to an operation. <br>
+- If View Books clicked, calls viewBooks() <br>
+- If Add Book clicked, calls addBook() <br>
+- If Remove Book clicked, calls removeBook() <br>
+- If Search Book clicked, calls searchBook() <br>
+- If Register User clicked, calls registerUser() <br>
+- If View User clicked, calls viewUser() <br>
+- If View All Users clicked, calls viewAllUsers() <br>
+- If Issue Book clicked, calls issueBook() <br>
+- If Return Book clicked, calls returnBookL() <br>
 
 Library.java :-
 - Has BookList HashMap to store all book Ids and Book objects. <br>
