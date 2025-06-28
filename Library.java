@@ -7,17 +7,6 @@ class Library {
     private final HashMap<Long, Book> BookList=new HashMap<>();
     private final HashMap<Long, User> UserList=new HashMap<>();
 
-    /*public void viewBooks() {
-        for(Book b:BookList.values()) {
-            System.out.println("ID - " + b.getID());
-            System.out.println("Title - " + b.getTitle());
-            System.out.println("Author - " + b.getAuthor());
-            System.out.println("Total Copies - " + b.getTotalCopies());
-            System.out.println("Available Copies - " + b.getAvailCopies());
-            System.out.println();
-        }
-    }*/
-
     public Collection<Book> getBookList() {
         return BookList.values();
     }
@@ -53,29 +42,6 @@ class Library {
         }
         else {
             return ("No such Book ID exists.");
-        }
-    }
-
-    public void searchBook() {
-        System.out.println("Enter Title to Search - ");
-        scan.nextLine();
-        String title=scan.nextLine().trim();
-        System.out.println();
-        boolean found=false;
-        for(Book b:BookList.values()) {
-            if(title.equalsIgnoreCase(b.getTitle())) {
-                found=true;
-                System.out.println("ID - " + b.getID());
-                System.out.println("Title - " + b.getTitle());
-                System.out.println("Author - " + b.getAuthor());
-                System.out.println("Total Copies - " + b.getTotalCopies());
-                System.out.println("Available Copies - " + b.getAvailCopies());
-                System.out.println();
-            }
-        }
-        if(found==false) {
-            System.out.println("No such Book exists");
-            System.out.println();
         }
     }
 

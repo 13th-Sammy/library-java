@@ -22,10 +22,10 @@ class Menu {
 
         JButton addBookBtn=new JButton("Add Book");
         addBookBtn.addActionListener(e -> {
-            String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -");
+            String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -").trim();
             long ID=Long.parseLong(idStr);
-            String t=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -");
-            String a=JOptionPane.showInputDialog(menuPanel, "Enter Author Name");
+            String t=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
+            String a=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
             String res=lib.addBook(ID, t, a);
             JOptionPane.showMessageDialog(menuPanel, res);
         });
@@ -33,15 +33,19 @@ class Menu {
 
         JButton remBookBtn=new JButton("Remove Book");
         remBookBtn.addActionListener(e -> {
-            String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to remove from System - ");
+            String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to remove from System -").trim();
             long id=Long.parseLong(idStr);
-            lib.removeBook(id);
+            String res=lib.removeBook(id);
+            JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(remBookBtn);
 
         JButton searchBookBtn=new JButton("Search Book");
         searchBookBtn.addActionListener(e-> {
-            lib.searchBook();
+            String title=JOptionPane.showInputDialog(menuPanel, "Enter Title to Search -").trim();
+            frame.setContentPane(new SearchBooks(frame, lib, menuPanel, title));
+            frame.revalidate();
+            frame.repaint();
         });
         menuPanel.add(searchBookBtn);
 
