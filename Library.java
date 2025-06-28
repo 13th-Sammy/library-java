@@ -56,6 +56,21 @@ class Library {
         return ("User added successfully, Uid - " + user.getUid());
     }
 
+    public String removeUser(long uid) {
+        if(UserList.containsKey(uid)) {
+            if(UserList.get(uid).getBorrowedMap().isEmpty()) {
+                UserList.remove(uid);
+                return ("User with ID " + uid + " removed from System permanently");
+            }
+            else {
+                return ("User has not returned all books, cannot remove");
+            }
+        }
+        else {
+            return ("No such user exists");
+        }
+    }
+
     public String issueBook(long uid, long bid, int noOfCopies) {
         if(!UserList.containsKey(uid)) {
             return ("Uid does not exist");

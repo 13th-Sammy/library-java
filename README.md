@@ -14,6 +14,7 @@ library as well as those of individual users.
 - Remove Book <br>
 - Search Book <br>
 - Register User <br>
+- Remove User <br>
 - View User <br>
 - View All Users <br>
 - Issue Book <br>
@@ -36,6 +37,7 @@ operation is placed inside menuPanel, inside frame.
 - If Remove Book clicked, calls removeBook() <br>
 - If Search Book clicked, shows SearchBooks panel <br>
 - If Register User clicked, calls registerUser() <br>
+- If Remove User clicked, calls removeUser() <br>
 - If View User clicked, shows ViewUser panel <br>
 - If View All Users clicked, shows ViewAllUsers panel <br>
 - If Issue Book clicked, calls issueBook() <br>
@@ -52,6 +54,8 @@ creates Book object and pushes it into BookList HashMap - bookID, book <br>
 from the BookList HashMap. <br>
 - A registerUser() method that takes inputs uid and user name and <br>
 creates User object, then pushes it into UserList HashMap - uid, user. <br>
+- A removeUser() method that takes uid as input and removes the user from <br>
+UserList HashMap with that uid, if the user has no borrowed books remaining. <br>
 - A issueBook() method which takes in uid and book id, and adds the book id <br>
 with count+noOfCopies in BorrowedBooks HashMap of user object with matching uid - by <br>
 calling user object.borrrowBook(bid). Updates available copies of book object <br>

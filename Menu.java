@@ -10,7 +10,7 @@ class Menu {
         frame=new JFrame("Library Menu");
         frame.setSize(400, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuPanel.setLayout(new GridLayout(9, 1, 5, 5));
+        menuPanel.setLayout(new GridLayout(10, 1, 5, 5));
         
         JButton viewBooksBtn=new JButton("View Books");
         viewBooksBtn.addActionListener(e -> {
@@ -58,6 +58,15 @@ class Menu {
             JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(regUserBtn);
+
+        JButton remUserBtn=new JButton("Remove User");
+        remUserBtn.addActionListener(e -> {
+            String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID to remove from System -").trim();
+            long uid=Long.parseLong(uidStr);
+            String res=lib.removeUser(uid);
+            JOptionPane.showMessageDialog(menuPanel, res);
+        });
+        menuPanel.add(remUserBtn);
 
         JButton viewUserBtn=new JButton("View User");
         viewUserBtn.addActionListener(e-> {
