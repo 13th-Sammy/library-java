@@ -44,10 +44,8 @@ operation is placed inside menuPanel, inside frame.
 Library.java :-
 - Has BookList HashMap to store all book Ids and Book objects. <br>
 - Has UserList HashMap to store all user IDs and User objects. <br>
-- A getBookList() method that returns the values of HashMap id, Book <br>
-as a Collection of Books.
-- A getUserList() method that returns the values of HashMap id, User
-as a Collection of Users.
+- A getBookList() method that returns HashMap BookList. <br>
+- A getUserList() method that returns HashMap UserList <br>
 - An addBook() method takes inputs bookID, title and author, <br>
 creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
@@ -86,7 +84,7 @@ ViewBooks.java :-
 more JPanels for showing different parts of the page as mentioned below. <br>
 - Creates a booksPanel inside ViewBooks JPanel. booksPanel will have <br>
 more Jpanels called blocks inside it. <br>
-- Iterates over Book collection and prints each book info in a block <br>
+- Iterates over books HashMap (from getBookList()) and prints each book info in a block <br>
 inside booksPanel. <br>
 - Adds scrollpane with booksPanel to ViewBooks JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to ViewBooks JPanel. <br>
@@ -97,7 +95,7 @@ SearchBooks.java :-
 more JPanels for showing different parts of the page as mentioned below. <br>
 - Creates a searchedPanel inside SearchBooks JPanel. searchedPanel will have more <br>
 JPanels called blocks inside it. <br>
-- Iterates over Book collection and prints searched title book info in a <br>
+- Iterates over books HashMap (from getBookList()) and prints searched title book info in a <br>
 block inside searchedPanel.
 - Adds scrollpane with searchedPanel to SearchBooks JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to SearchBooks JPanel. <br>
@@ -108,8 +106,8 @@ ViewUser.java :-
 Jpanels inside it to show different parts of the page as mentioned below. <br>
 - Creates a userPanel inside ViewUser panel. userPanel will have more Jpanels <br>
 called blocks inside it. <br>
-- Iterates over User collection and prints searched Uid user info in a block <br>
-inside userPanel. <br>
+- Checks if users HashMap (from getUserList()) contains searched Uid and prints <br> 
+corresponding user info in a block inside userPanel. <br>
 - Adds scrollpane with userPanel to ViewUser JPanel.
 - Adds backButton to bottomPanel JPanel and adds that to ViewUser JPanel. <br>
 backButton switches contentPane to menuPanel.
@@ -119,7 +117,7 @@ ViewAllUsers.java :-
 Jpanels inside it to show different parts of the page as mentioned below. <br>
 - Creates a usersPanel inside ViewAllUsers panel. usersPanel will have more Jpanels <br>
 called blocks inside it. <br>
-- Iterates over User collection and prints user info in a block <br>
+- Iterates over users HashMap (from getUserList()) and prints user info in a block <br>
 inside usersPanel. <br>
 - Adds scrollpane with usersPanel to ViewAllUsers JPanel.
 - Adds backButton to bottomPanel JPanel and adds that to ViewAllUsers JPanel. <br>
@@ -128,4 +126,3 @@ backButton switches contentPane to menuPanel.
 Add Later :-
 - Logging <br>
 - Remove User <br>
-- Change all collections with HashMap and avoid a couple for loops in the GUI files <br>

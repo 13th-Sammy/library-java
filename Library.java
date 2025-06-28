@@ -1,16 +1,15 @@
-import java.util.Collection;
 import java.util.HashMap;
 
 class Library {
     private final HashMap<Long, Book> BookList=new HashMap<>();
     private final HashMap<Long, User> UserList=new HashMap<>();
 
-    public Collection<Book> getBookList() {
-        return BookList.values();
+    public HashMap<Long, Book> getBookList() {
+        return BookList;
     }
 
-    public Collection<User> getUserList() {
-        return UserList.values();
+    public HashMap<Long, User> getUserList() {
+        return UserList;
     }
 
     public String addBook(long ID, String t, String a) {

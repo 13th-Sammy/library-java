@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.Collection;
 import java.util.HashMap;
 import javax.swing.*;
 
@@ -8,7 +7,7 @@ class ViewUser extends JPanel {
         setLayout(new BorderLayout());
         JPanel userPanel=new JPanel();
         userPanel.setLayout(new BoxLayout(userPanel, BoxLayout.Y_AXIS));
-        Collection<User> users=lib.getUserList();
+        HashMap<Long, User> users=lib.getUserList();
 
         if(users.isEmpty()) {
             JLabel noBooks=new JLabel("No Users Registered");
@@ -16,27 +15,23 @@ class ViewUser extends JPanel {
             userPanel.add(noBooks);
         }
         else {
-            boolean found=false;
-            for(User u:users) {
-                if(uid==u.getUid()) {
-                    found=true;
-                    JPanel block=new JPanel(new GridLayout(0,1));
-                    block.setBorder(BorderFactory.createTitledBorder("User ID - " + u.getUid()));
-                    block.add(new JLabel("User Name - " + u.getName()));
-                    HashMap<Long, Integer> BooksBorrowed=new HashMap<>(u.getBorrowedMap());
-                    if(BooksBorrowed.isEmpty()) {
-                        block.add(new JLabel("No Books Borrowed"));
-                    }
-                    else {
-                        for(long bid:BooksBorrowed.keySet()) {
-                            block.add(new JLabel("Borrowed Book ID - " + bid));
-                            block.add(new JLabel("Copies Borrowed - " + BooksBorrowed.get(bid)));
-                        }
-                    }
-                    userPanel.add(block);
+            if(users.containsKey(uid)) {
+                JPanel block=new JPanel(new GridLayout(0,1));
+                block.setBorder(BorderFactory.createTitledBorder("User ID - " + users.get(uid).getUid()));
+                block.add(new JLabel("User Name - " + users.get(uid).getName()));
+                HashMap<Long, Integer> BooksBorrowed=new HashMap<>(users.get(uid).getBorrowedMap());
+                if(BooksBorrowed.isEmpty()) {
+                    block.add(new JLabel("No Books Borrowed"));
                 }
+                else {
+                    for(long bid:BooksBorrowed.keySet()) {
+                        block.add(new JLabel("Borrowed Book ID - " + bid));
+                        block.add(new JLabel("Copies Borrowed - " + BooksBorrowed.get(bid)));
+                    }
+                }
+                userPanel.add(block);
             }
-            if(found==false) {
+            else {
                 JLabel notFound=new JLabel("No such user exists");
                 notFound.setAlignmentX(Component.CENTER_ALIGNMENT);
                 userPanel.add(notFound);

@@ -1,5 +1,5 @@
 import java.awt.*;
-import java.util.Collection;
+import java.util.HashMap;
 import javax.swing.*;
 
 class SearchBooks extends JPanel {
@@ -7,7 +7,7 @@ class SearchBooks extends JPanel {
         setLayout(new BorderLayout());
         JPanel searchedPanel=new JPanel();
         searchedPanel.setLayout(new BoxLayout(searchedPanel, BoxLayout.Y_AXIS));
-        Collection<Book> books=lib.getBookList();
+        HashMap<Long, Book> books=lib.getBookList();
 
         if(books.isEmpty()) {
             JLabel noBooks=new JLabel("No Books in Library");
@@ -16,7 +16,7 @@ class SearchBooks extends JPanel {
         }
         else {
             boolean found=false;
-            for(Book b:books) {
+            for(Book b:books.values()) {
                 if(b.getTitle().equalsIgnoreCase(title)) {
                     found=true;
                     JPanel block=new JPanel(new GridLayout(0,1));
