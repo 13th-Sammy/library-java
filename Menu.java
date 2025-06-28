@@ -11,7 +11,7 @@ class Menu {
         frame=new JFrame("Library Menu");
         frame.setSize(400, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuPanel.setLayout(new GridLayout(10, 1, 5, 5));
+        menuPanel.setLayout(new GridLayout(12, 1, 5, 5));
         
         JButton viewBooksBtn=new JButton("View Books");
         viewBooksBtn.addActionListener(e -> {
@@ -116,6 +116,19 @@ class Menu {
             JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(returnBookBtn);
+
+        JButton viewLogsBtn=new JButton("View Logs");
+        viewLogsBtn.addActionListener(e -> {
+            frame.setContentPane(new ViewLogs(frame, logger, menuPanel));
+            frame.revalidate();
+            frame.repaint();
+        });
+        menuPanel.add(viewLogsBtn);
+
+        JButton removeLogsBtn=new JButton("Remove Logs");
+        removeLogsBtn.addActionListener(e -> {
+            logger.removeLogs();
+        });
 
         frame.setContentPane(menuPanel);
     }

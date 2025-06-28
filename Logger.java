@@ -11,4 +11,8 @@ class Logger {
     public ArrayList<String> getLogs() {
         return logs;
     }
+
+    public void clearLogs() {
+        logs.clear();
+    }
 }

@@ -19,6 +19,8 @@ library as well as those of individual users.
 - View All Users <br>
 - Issue Book <br>
 - Return Book <br>
+- View Logs <br>
+- Clear All Logs <br>
 
 # Project Structure
 
@@ -42,6 +44,8 @@ operation is placed inside menuPanel, inside frame.
 - If View All Users clicked, shows ViewAllUsers panel <br>
 - If Issue Book clicked, calls issueBook() <br>
 - If Return Book clicked, calls returnBookL() <br>
+- If View Logs clicked, shows ViewLogs panel <br>
+- If Clear All Logs clicked, calls clearLogs() <br>
 
 Library.java :-
 - Has BookList HashMap to store all book Ids and Book objects. <br>
@@ -134,5 +138,13 @@ Logger.java :-
 - Logger objects are created in Library.java and Menu.java <br>
 to log all the different operations with object.log(string). <br>
 
-Add Later :-
-- Logging <br>
+ViewLogs.java :-
+- Handles the GUI and logic for viewing logs. It is a Jpanel and has other Jpanels <br>
+inside it.
+- Inside ViewLogs JPanel, there is a logPanel Jpanel. <br>
+- A logs variable holds the ArrayList of logs (using getLogs()). <br>
+- Iterates over logs and prints out every log info inside logsPanel, which is <br>
+inside JPanel ViewLogs. <br>
+- Adds scrollPane with logPanel to ViewLogs JPanel. <br>
+- Adds backButton to bottomPanel JPanel and adds that to ViewLogs JPanel. <br>
+backButton switches contentPane to menuPanel.
