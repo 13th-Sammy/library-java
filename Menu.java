@@ -4,19 +4,21 @@ import javax.swing.*;
 class Menu {
     private final JFrame frame;
     private final Library lib=new Library();
+    private final Logger logger=Logger.getInstance();
     private final JPanel menuPanel=new JPanel();
 
     public Menu() {
         frame=new JFrame("Library Menu");
         frame.setSize(400, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menuPanel.setLayout(new GridLayout(9, 1, 5, 5));
+        menuPanel.setLayout(new GridLayout(12, 1, 5, 5));
         
         JButton viewBooksBtn=new JButton("View Books");
         viewBooksBtn.addActionListener(e -> {
             frame.setContentPane(new ViewBooks(frame, lib, menuPanel));
             frame.revalidate();
             frame.repaint();
+            logger.log("View Books");
         });
         menuPanel.add(viewBooksBtn);
 
@@ -46,6 +48,7 @@ class Menu {
             frame.setContentPane(new SearchBooks(frame, lib, menuPanel, title));
             frame.revalidate();
             frame.repaint();
+            logger.log("Search Book");
         });
         menuPanel.add(searchBookBtn);
 
@@ -59,6 +62,15 @@ class Menu {
         });
         menuPanel.add(regUserBtn);
 
+        JButton remUserBtn=new JButton("Remove User");
+        remUserBtn.addActionListener(e -> {
+            String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID to remove from System -").trim();
+            long uid=Long.parseLong(uidStr);
+            String res=lib.removeUser(uid);
+            JOptionPane.showMessageDialog(menuPanel, res);
+        });
+        menuPanel.add(remUserBtn);
+
         JButton viewUserBtn=new JButton("View User");
         viewUserBtn.addActionListener(e-> {
             String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
@@ -66,6 +78,7 @@ class Menu {
             frame.setContentPane(new ViewUser(frame, lib, menuPanel, uid));
             frame.revalidate();
             frame.repaint();
+            logger.log("View User");
         });
         menuPanel.add(viewUserBtn);
 
@@ -74,6 +87,7 @@ class Menu {
             frame.setContentPane(new ViewAllUsers(frame, lib, menuPanel));
             frame.revalidate();
             frame.repaint();
+            logger.log("View All Users");
         });
         menuPanel.add(viewAllUsersBtn);
 
@@ -102,6 +116,20 @@ class Menu {
             JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(returnBookBtn);
+
+        JButton viewLogsBtn=new JButton("View Logs");
+        viewLogsBtn.addActionListener(e -> {
+            frame.setContentPane(new ViewLogs(frame, logger, menuPanel));
+            frame.revalidate();
+            frame.repaint();
+        });
+        menuPanel.add(viewLogsBtn);
+
+        JButton clearLogsBtn=new JButton("Clear All Logs");
+        clearLogsBtn.addActionListener(e -> {
+            logger.clearLogs();
+        });
+        menuPanel.add(clearLogsBtn);
 
         frame.setContentPane(menuPanel);
     }

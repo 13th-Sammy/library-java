@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.Collection;
 import java.util.HashMap;
 import javax.swing.*;
 
@@ -8,7 +7,7 @@ class ViewAllUsers extends JPanel {
         setLayout(new BorderLayout());
         JPanel usersPanel=new JPanel();
         usersPanel.setLayout(new BoxLayout(usersPanel, BoxLayout.Y_AXIS));
-        Collection<User> users=lib.getUserList();
+        HashMap<Long, User> users=lib.getUserList();
 
         if(users.isEmpty()) {
             JLabel noBooks=new JLabel("No Users Registered");
@@ -16,7 +15,7 @@ class ViewAllUsers extends JPanel {
             usersPanel.add(noBooks);
         }
         else {
-            for(User u:users) {
+            for(User u:users.values()) {
                 JPanel block=new JPanel(new GridLayout(0,1));
                 block.setBorder(BorderFactory.createTitledBorder("User ID - " + u.getUid()));
                 block.add(new JLabel("User Name - " + u.getName()));

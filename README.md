@@ -14,10 +14,13 @@ library as well as those of individual users.
 - Remove Book <br>
 - Search Book <br>
 - Register User <br>
+- Remove User <br>
 - View User <br>
 - View All Users <br>
 - Issue Book <br>
 - Return Book <br>
+- View Logs <br>
+- Clear All Logs <br>
 
 # Project Structure
 
@@ -36,24 +39,27 @@ operation is placed inside menuPanel, inside frame.
 - If Remove Book clicked, calls removeBook() <br>
 - If Search Book clicked, shows SearchBooks panel <br>
 - If Register User clicked, calls registerUser() <br>
+- If Remove User clicked, calls removeUser() <br>
 - If View User clicked, shows ViewUser panel <br>
 - If View All Users clicked, shows ViewAllUsers panel <br>
 - If Issue Book clicked, calls issueBook() <br>
 - If Return Book clicked, calls returnBookL() <br>
+- If View Logs clicked, shows ViewLogs panel <br>
+- If Clear All Logs clicked, calls clearLogs() 
 
 Library.java :-
 - Has BookList HashMap to store all book Ids and Book objects. <br>
 - Has UserList HashMap to store all user IDs and User objects. <br>
-- A getBookList() method that returns the values of HashMap id, Book <br>
-as a Collection of Books.
-- A getUserList() method that returns the values of HashMap id, User
-as a Collection of Users.
+- A getBookList() method that returns HashMap BookList. <br>
+- A getUserList() method that returns HashMap UserList <br>
 - An addBook() method takes inputs bookID, title and author, <br>
 creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
 from the BookList HashMap. <br>
 - A registerUser() method that takes inputs uid and user name and <br>
 creates User object, then pushes it into UserList HashMap - uid, user. <br>
+- A removeUser() method that takes uid as input and removes the user from <br>
+UserList HashMap with that uid, if the user has no borrowed books remaining. <br>
 - A issueBook() method which takes in uid and book id, and adds the book id <br>
 with count+noOfCopies in BorrowedBooks HashMap of user object with matching uid - by <br>
 calling user object.borrrowBook(bid). Updates available copies of book object <br>
@@ -61,7 +67,7 @@ with matching bid. <br>
 - A returnBookL() method which takes in uid and book id, and adds the book id <br>
 with count-noOfCopies in BorrowedBooks HashMap of user object with matching uid - by <br>
 calling user object.returnBook(bid). Updates available copies of book object <br>
-with matching bid. <br>
+with matching bid. 
 
 Book.java :- <br>
 - Serves as the holder of all information regarding one book. <br>
@@ -86,7 +92,7 @@ ViewBooks.java :-
 more JPanels for showing different parts of the page as mentioned below. <br>
 - Creates a booksPanel inside ViewBooks JPanel. booksPanel will have <br>
 more Jpanels called blocks inside it. <br>
-- Iterates over Book collection and prints each book info in a block <br>
+- Iterates over books HashMap (from getBookList()) and prints each book info in a block <br>
 inside booksPanel. <br>
 - Adds scrollpane with booksPanel to ViewBooks JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to ViewBooks JPanel. <br>
@@ -97,8 +103,8 @@ SearchBooks.java :-
 more JPanels for showing different parts of the page as mentioned below. <br>
 - Creates a searchedPanel inside SearchBooks JPanel. searchedPanel will have more <br>
 JPanels called blocks inside it. <br>
-- Iterates over Book collection and prints searched title book info in a <br>
-block inside searchedPanel.
+- Iterates over books HashMap (from getBookList()) and prints searched title book info in a <br>
+block inside searchedPanel. <br>
 - Adds scrollpane with searchedPanel to SearchBooks JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to SearchBooks JPanel. <br>
 backButton switches contentPane to menuPanel.
@@ -108,9 +114,9 @@ ViewUser.java :-
 Jpanels inside it to show different parts of the page as mentioned below. <br>
 - Creates a userPanel inside ViewUser panel. userPanel will have more Jpanels <br>
 called blocks inside it. <br>
-- Iterates over User collection and prints searched Uid user info in a block <br>
-inside userPanel. <br>
-- Adds scrollpane with userPanel to ViewUser JPanel.
+- Checks if users HashMap (from getUserList()) contains searched Uid and prints <br> 
+corresponding user info in a block inside userPanel. <br>
+- Adds scrollpane with userPanel to ViewUser JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to ViewUser JPanel. <br>
 backButton switches contentPane to menuPanel.
 
@@ -119,13 +125,28 @@ ViewAllUsers.java :-
 Jpanels inside it to show different parts of the page as mentioned below. <br>
 - Creates a usersPanel inside ViewAllUsers panel. usersPanel will have more Jpanels <br>
 called blocks inside it. <br>
-- Iterates over User collection and prints user info in a block <br>
+- Iterates over users HashMap (from getUserList()) and prints user info in a block <br>
 inside usersPanel. <br>
-- Adds scrollpane with usersPanel to ViewAllUsers JPanel.
+- Adds scrollpane with usersPanel to ViewAllUsers JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to ViewAllUsers JPanel. <br>
-backButton switches contentPane to menuPanel.
+backButton switches contentPane to menuPanel. <br>
 
-Add Later :-
-- Logging <br>
-- Remove User <br>
-- Change all collections with HashMap and avoid a couple for loops in the GUI files <br>
+Logger.java :-
+- Contains ArrayList of Strings - logs to store logs. <br>
+- Has a static object called instance and a getter for it - getInstance(). <br>
+- Has setter log() to add string to ArrayList logs. <br>
+- Has getLogs() which returns the ArrayList. <br>
+- Logger objects - which are the static instance are created in <br> 
+Library.java and Menu.java using Logger.getInstance() - to log all the different <br>
+operations with object.log(string). <br>
+
+ViewLogs.java :-
+- Handles the GUI and logic for viewing logs. It is a Jpanel and has other Jpanels <br>
+inside it. <br>
+- Inside ViewLogs JPanel, there is a logPanel Jpanel. <br>
+- A logs variable holds the ArrayList of logs (using getLogs()). <br>
+- Iterates over logs and prints out every log info inside logsPanel, which is <br>
+inside JPanel ViewLogs. <br>
+- Adds scrollPane with logPanel to ViewLogs JPanel. <br>
+- Adds backButton to bottomPanel JPanel and adds that to ViewLogs JPanel. <br>
+backButton switches contentPane to menuPanel.
