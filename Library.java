@@ -11,6 +11,10 @@ class Library {
         return BookList.values();
     }
 
+    public Collection<User> getUserList() {
+        return UserList.values();
+    }
+
     public String addBook(long ID, String t, String a) {
         for(Book b:BookList.values()) {
             if(b.getTitle().equalsIgnoreCase(t) && b.getAuthor().equalsIgnoreCase(a) && b.getID()!=ID) {
@@ -53,29 +57,6 @@ class Library {
         User user=new User(uid, name);
         UserList.put(user.getUid(), user);
         return ("User added successfully, Uid - " + user.getUid());
-    }
-
-    public void viewUser() {
-        System.out.println("Enter Uid");
-        long uid=scan.nextLong();
-        if(UserList.containsKey(uid)) {
-            System.out.println();
-            System.out.println("Name - " + UserList.get(uid).getName());
-            System.out.println();
-            UserList.get(uid).viewBorrowed();
-        }
-        else {
-            System.out.println("Uid does not exist");
-            System.out.println();
-        }
-    }
-
-    public void viewAllUsers() {
-        for(User u:UserList.values()) {
-            System.out.println("Uid - " + u.getUid() + ", Name - " + u.getName());
-            System.out.println();
-            u.viewBorrowed();
-        }
     }
 
     public void issueBook() {

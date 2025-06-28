@@ -36,17 +36,19 @@ operation is placed inside menuPanel, inside frame.
 - If Remove Book clicked, calls removeBook() <br>
 - If Search Book clicked, shows SearchBooks panel <br>
 - If Register User clicked, calls registerUser() <br>
+- If View User clicked, shows ViewUser panel <br>
+- If View All Users clicked, shows ViewAllUsers panel <br>
 . <br>
-- If View User clicked, calls viewUser() <br>
-- If View All Users clicked, calls viewAllUsers() <br>
 - If Issue Book clicked, calls issueBook() <br>
 - If Return Book clicked, calls returnBookL() <br>
 
 Library.java :-
 - Has BookList HashMap to store all book Ids and Book objects. <br>
 - Has UserList HashMap to store all user IDs and User objects. <br>
-- A getBookList() method that returns the values of HashMap id, book <br>
+- A getBookList() method that returns the values of HashMap id, Book <br>
 as a Collection of Books.
+- A getUserList() method that returns the values of HashMap id, User
+as a Collection of Users.
 - An addBook() method takes inputs bookID, title and author, <br>
 creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
@@ -54,9 +56,6 @@ from the BookList HashMap. <br>
 - A registerUser() method that takes inputs uid and user name and <br>
 creates User object, then pushes it into UserList HashMap - uid, user. <br>
 . <br>
-- A viewUser() method that takes uid and shows username and books borrowed. <br>
-- A viewAllUsers() method that iterates over UserList and prints all users <br>
-and borrowed Books by calling user object.viewBorrowed(). <br>
 - A issueBook() method which takes in uid and book id, and adds the book id <br>
 with count+noOfCopies in BorrowedBooks HashMap of user object with matching uid - by <br>
 calling user object.borrrowBook(bid). Updates available copies of book object <br>
@@ -78,11 +77,10 @@ User.java :-
 bookID and copies borrowed. <br>
 - Has parameterised constructor for uid and name. <br>
 - Has getters for name and uid. Has borrowBook(), returnBook() <br>
-viewBorrowed() and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
+and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
 - borrowBook() adds id, copies+1 to BooksBorrowed. <br>
 - returnBook() adds id, copies-1 to BooksBorrowed and if copies is <br>
 <=1 it removes the entry. <br>
-- viewBorrowed() to iterate over BooksBorrowed and print it. <br>
 - getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 
 
 ViewBooks.java :-
@@ -105,6 +103,28 @@ JPanels called blocks inside it. <br>
 block inside searchedPanel.
 - Adds scrollpane with searchedPanel to SearchBooks JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to SearchBooks JPanel. <br>
+backButton switches contentPane to menuPanel.
+
+ViewUser.java :-
+- Handles the GUI and logic for viewing a User. It is a JPanel and has other <br>
+Jpanels inside it to show different parts of the page as mentioned below. <br>
+- Creates a userPanel inside ViewUser panel. userPanel will have more Jpanels <br>
+called blocks inside it. <br>
+- Iterates over User collection and prints searched Uid user info in a block <br>
+inside userPanel. <br>
+- Adds scrollpane with userPanel to ViewUser JPanel.
+- Adds backButton to bottomPanel JPanel and adds that to ViewUser JPanel. <br>
+backButton switches contentPane to menuPanel.
+
+ViewAllUsers.java :-
+- Handles the GUI and logic for viewing a User. It is a JPanel and has other <br>
+Jpanels inside it to show different parts of the page as mentioned below. <br>
+- Creates a usersPanel inside ViewAllUsers panel. usersPanel will have more Jpanels <br>
+called blocks inside it. <br>
+- Iterates over User collection and prints user info in a block <br>
+inside usersPanel. <br>
+- Adds scrollpane with usersPanel to ViewAllUsers JPanel.
+- Adds backButton to bottomPanel JPanel and adds that to ViewAllUsers JPanel. <br>
 backButton switches contentPane to menuPanel.
 
 Add Later :-

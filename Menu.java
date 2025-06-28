@@ -61,13 +61,19 @@ class Menu {
 
         JButton viewUserBtn=new JButton("View User");
         viewUserBtn.addActionListener(e-> {
-            lib.viewUser();
+            String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -");
+            long uid=Long.parseLong(uidStr);
+            frame.setContentPane(new ViewUser(frame, lib, menuPanel, uid));
+            frame.revalidate();
+            frame.repaint();
         });
         menuPanel.add(viewUserBtn);
 
         JButton viewAllUsersBtn=new JButton("View All Users");
         viewAllUsersBtn.addActionListener(e -> {
-            lib.viewAllUsers();
+            frame.setContentPane(new ViewAllUsers(frame, lib, menuPanel));
+            frame.revalidate();
+            frame.repaint();
         });
         menuPanel.add(viewAllUsersBtn);
 

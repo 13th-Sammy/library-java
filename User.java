@@ -46,14 +46,6 @@ class User {
         }
     }
 
-    public void viewBorrowed() {
-        for(long id:BooksBorrowed.keySet()) {
-            System.out.println("Book ID Borrowed - " + id);
-            System.out.println("Copies Borrowed - " + BooksBorrowed.get(id));
-            System.out.println();
-        }
-    }
-
     public HashMap<Long, Integer> getBorrowedMap() {
         return new HashMap<>(BooksBorrowed);
     }
