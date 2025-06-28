@@ -34,9 +34,9 @@ operation is placed inside menuPanel, inside frame.
 - If View Books clicked, shows ViewBooks panel <br>
 - If Add Book clicked, calls addBook() <br>
 - If Remove Book clicked, calls removeBook() <br>
-. <br>
-- If Search Book clicked, calls searchBook() <br>
+- If Search Book clicked, shows SearchBooks panel <br>
 - If Register User clicked, calls registerUser() <br>
+. <br>
 - If View User clicked, calls viewUser() <br>
 - If View All Users clicked, calls viewAllUsers() <br>
 - If Issue Book clicked, calls issueBook() <br>
@@ -51,11 +51,9 @@ as a Collection of Books.
 creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
 from the BookList HashMap. <br>
-. <br>
-- A searchBook() method that takes in title as input, iterates over <br>
-BookList and prints attributes of Book if found. <br>
 - A registerUser() method that takes inputs uid and user name and <br>
 creates User object, then pushes it into UserList HashMap - uid, user. <br>
+. <br>
 - A viewUser() method that takes uid and shows username and books borrowed. <br>
 - A viewAllUsers() method that iterates over UserList and prints all users <br>
 and borrowed Books by calling user object.viewBorrowed(). <br>
@@ -88,12 +86,23 @@ viewBorrowed() and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
 - getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 
 
 ViewBooks.java :-
-- Handles the GUI for viewing books. It is a JPanel. Inside it there are <br>
+- Handles the GUI and logic for viewing books. It is a JPanel. Inside it there are <br>
 more JPanels for showing different parts of the page as mentioned below. <br>
 - Creates a booksPanel inside ViewBooks JPanel. booksPanel will have <br>
 more Jpanels called blocks inside it. <br>
 - Iterates over Book collection and prints each book info in a block <br>
 inside booksPanel. <br>
-- Adds scrollpane to ViewBooks JPanel. <br>
+- Adds scrollpane with booksPanel to ViewBooks JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to ViewBooks JPanel. <br>
 backButton switches contentPane to menuPanel. 
+
+SearchBooks.java :-
+- Handles the GUI and logic for searching books. It is a Jpanel. Inside it there are <br>
+more JPanels for showing different parts of the page as mentioned below. <br>
+- Creates a searchedPanel inside SearchBooks JPanel. searchedPanel will have more <br>
+JPanels called blocks inside it. <br>
+- Iterates over Book collection and prints searched title book info in a <br>
+block inside searchedPanel.
+- Adds scrollpane with searchedPanel to SearchBooks JPanel. <br>
+- Adds backButton to bottomPanel JPanel and adds that to SearchBooks JPanel. <br>
+backButton switches contentPane to menuPanel.

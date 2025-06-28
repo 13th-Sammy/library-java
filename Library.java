@@ -45,22 +45,14 @@ class Library {
         }
     }
 
-    public void registerUser() {
-        System.out.println("Enter User ID");
-        long uid=scan.nextLong();
+    public String registerUser(long uid, String name) {
         if(UserList.containsKey(uid)) {
-            System.out.println("Uid already exists, user not added");
-            System.out.println();
-            return;
+            return ("Uid already exists, user not added");
         }
-        System.out.println("Enter User Name");
-        scan.nextLine();
-        String name=scan.nextLine().trim();
 
         User user=new User(uid, name);
         UserList.put(user.getUid(), user);
-        System.out.println("User added successfully, Uid - " + user.getUid());
-        System.out.println();
+        return ("User added successfully, Uid - " + user.getUid());
     }
 
     public void viewUser() {

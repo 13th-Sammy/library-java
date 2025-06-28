@@ -51,7 +51,11 @@ class Menu {
 
         JButton regUserBtn=new JButton("Register User");
         regUserBtn.addActionListener(e -> {
-            lib.registerUser();
+            String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID -").trim();
+            long uid=Long.parseLong(uidStr);
+            String name=JOptionPane.showInputDialog(menuPanel, "Enter User Name -").trim();
+            String res=lib.registerUser(uid, name);
+            JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(regUserBtn);
 
