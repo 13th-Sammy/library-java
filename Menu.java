@@ -4,6 +4,7 @@ import javax.swing.*;
 class Menu {
     private final JFrame frame;
     private final Library lib=new Library();
+    private final Logger logger=new Logger();
     private final JPanel menuPanel=new JPanel();
 
     public Menu() {
@@ -17,6 +18,7 @@ class Menu {
             frame.setContentPane(new ViewBooks(frame, lib, menuPanel));
             frame.revalidate();
             frame.repaint();
+            logger.log("View Books");
         });
         menuPanel.add(viewBooksBtn);
 
@@ -46,6 +48,7 @@ class Menu {
             frame.setContentPane(new SearchBooks(frame, lib, menuPanel, title));
             frame.revalidate();
             frame.repaint();
+            logger.log("Search Book");
         });
         menuPanel.add(searchBookBtn);
 
@@ -75,6 +78,7 @@ class Menu {
             frame.setContentPane(new ViewUser(frame, lib, menuPanel, uid));
             frame.revalidate();
             frame.repaint();
+            logger.log("View User");
         });
         menuPanel.add(viewUserBtn);
 
@@ -83,6 +87,7 @@ class Menu {
             frame.setContentPane(new ViewAllUsers(frame, lib, menuPanel));
             frame.revalidate();
             frame.repaint();
+            logger.log("View All Users");
         });
         menuPanel.add(viewAllUsersBtn);
 
