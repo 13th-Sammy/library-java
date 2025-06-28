@@ -3,7 +3,7 @@ import java.util.HashMap;
 class Library {
     private final HashMap<Long, Book> BookList=new HashMap<>();
     private final HashMap<Long, User> UserList=new HashMap<>();
-    private final Logger logger=new Logger();
+    private final Logger logger=Logger.getInstance();
 
     public HashMap<Long, Book> getBookList() {
         return BookList;

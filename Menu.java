@@ -4,7 +4,7 @@ import javax.swing.*;
 class Menu {
     private final JFrame frame;
     private final Library lib=new Library();
-    private final Logger logger=new Logger();
+    private final Logger logger=Logger.getInstance();
     private final JPanel menuPanel=new JPanel();
 
     public Menu() {
