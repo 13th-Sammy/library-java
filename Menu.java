@@ -125,10 +125,11 @@ class Menu {
         });
         menuPanel.add(viewLogsBtn);
 
-        JButton removeLogsBtn=new JButton("Remove Logs");
-        removeLogsBtn.addActionListener(e -> {
-            logger.removeLogs();
+        JButton clearLogsBtn=new JButton("Clear All Logs");
+        clearLogsBtn.addActionListener(e -> {
+            logger.clearLogs();
         });
+        menuPanel.add(clearLogsBtn);
 
         frame.setContentPane(menuPanel);
     }
