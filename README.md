@@ -127,5 +127,12 @@ inside usersPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to ViewAllUsers JPanel. <br>
 backButton switches contentPane to menuPanel.
 
+Logger.java :-
+- Contains ArrayList<String> logs to store logs.
+- Has setter log() to add string to ArrayList logs.
+- Has getLogs() which returns the ArrayList.
+- Logger objects are created in Library.java and Menu.java <br>
+to log all the different operations with object.log(string). <br>
+
 Add Later :-
 - Logging <br>
