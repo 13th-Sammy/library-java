@@ -45,7 +45,10 @@ operation is placed inside menuPanel, inside frame.
 - If Issue Book clicked, calls issueBook() <br>
 - If Return Book clicked, calls returnBookL() <br>
 - If View Logs clicked, shows ViewLogs panel <br>
-- If Clear All Logs clicked, calls clearLogs() 
+- If Clear All Logs clicked, calls clearLogs() <br>
+- Only clearLogs() exists in Logger.java, the other methods <br>
+mentioned here exist in Library.java. The panels are their <br>
+own .java files. 
 
 Library.java :-
 - Has BookList HashMap to store all book Ids and Book objects. <br>
