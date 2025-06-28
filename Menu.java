@@ -61,7 +61,7 @@ class Menu {
 
         JButton viewUserBtn=new JButton("View User");
         viewUserBtn.addActionListener(e-> {
-            String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -");
+            String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
             long uid=Long.parseLong(uidStr);
             frame.setContentPane(new ViewUser(frame, lib, menuPanel, uid));
             frame.revalidate();
@@ -79,13 +79,26 @@ class Menu {
 
         JButton issueBookBtn=new JButton("Issue Book");
         issueBookBtn.addActionListener(e-> {
-            lib.issueBook();
+            String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
+            long uid=Long.parseLong(uidStr);
+            String bidStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to borrow -").trim();
+            long bid=Long.parseLong(bidStr);
+            String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to borrow -").trim();
+            int noOfCopies=Integer.parseInt(noOfCopiesStr);
+            String res=lib.issueBook(uid, bid, noOfCopies);
+            JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(issueBookBtn);
 
         JButton returnBookBtn=new JButton("Return Book");
         returnBookBtn.addActionListener(e -> {
-            lib.returnBookL();
+            String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
+            long uid=Long.parseLong(uidStr);
+            String bidStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to return -").trim();
+            long bid=Long.parseLong(bidStr);
+            String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to return -").trim();
+            int noOfCopies=Integer.parseInt(noOfCopiesStr);
+            lib.returnBookL(uid, bid, noOfCopies);
         });
         menuPanel.add(returnBookBtn);
 

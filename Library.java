@@ -1,9 +1,7 @@
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Scanner;
 
 class Library {
-    private final Scanner scan=new Scanner(System.in);
     private final HashMap<Long, Book> BookList=new HashMap<>();
     private final HashMap<Long, User> UserList=new HashMap<>();
 
@@ -59,56 +57,40 @@ class Library {
         return ("User added successfully, Uid - " + user.getUid());
     }
 
-    public void issueBook() {
-        System.out.println("Enter uid");
-        long uid=scan.nextLong();
+    public String issueBook(long uid, long bid, int noOfCopies) {
         if(!UserList.containsKey(uid)) {
-            System.out.println("Uid does not exist");
-            System.out.println();
-            return;
+            return ("Uid does not exist");
         }
-        System.out.println("Enter Book ID to borrow"); 
-        long bid=scan.nextLong();
         if(!BookList.containsKey(bid)) {
-            System.out.println("Book ID does not exist");
-            System.out.println();
-            return;
+            return ("Book ID does not exist");
         }
-        System.out.println("Enter number of copies to borrow");
-        int noOfCopies=scan.nextInt();
         if(BookList.get(bid).getAvailCopies()-noOfCopies<0) {
-            System.out.println("Not enough available copies");
-            System.out.println();
-            return;
+            return ("Not enough available copies");
         }
         BookList.get(bid).remAvailCopies(noOfCopies);
         UserList.get(uid).borrowBook(bid, noOfCopies);
-        System.out.println("Book successfully borrowed");
-        System.out.println();
+        return ("Book successfully borrowed");
     }
 
-    public void returnBookL() {
-        System.out.println("Enter uid");
-        long uid=scan.nextLong();
+    public String returnBookL(long uid, long bid, int noOfCopies) {
         if(!UserList.containsKey(uid)) {
-            System.out.println("Uid does not exist");
-            System.out.println();
-            return;
+            return ("Uid does not exist");
         }
-        System.out.println("Enter book ID to return");
-        long bid=scan.nextLong();
         if(!BookList.containsKey(bid)) {
-            System.out.println("Book ID does not exist");
-            System.out.println();
-            return;
+            return ("Book ID does not exist");
         }
-        System.out.println("Enter number of copies to return");
-        int noOfCopies=scan.nextInt();
         int res=UserList.get(uid).returnBook(bid, noOfCopies);
-        if(res==1) {
-            BookList.get(bid).addAvailCopies(noOfCopies);
-            System.out.println("Book sucessfully returned");
-            System.out.println();
+        switch (res) {
+            case 1 -> {
+                BookList.get(bid).addAvailCopies(noOfCopies);
+                return ("Book sucessfully returned");
+            }
+            case 0 -> {
+                return ("User does not have so many copies, not returned");
+            }
+            default -> {
+                return ("User has not borrowed this book with id - " + bid);
+            }
         }
     }
 }

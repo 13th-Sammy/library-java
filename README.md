@@ -38,7 +38,6 @@ operation is placed inside menuPanel, inside frame.
 - If Register User clicked, calls registerUser() <br>
 - If View User clicked, shows ViewUser panel <br>
 - If View All Users clicked, shows ViewAllUsers panel <br>
-. <br>
 - If Issue Book clicked, calls issueBook() <br>
 - If Return Book clicked, calls returnBookL() <br>
 
@@ -55,7 +54,6 @@ creates Book object and pushes it into BookList HashMap - bookID, book <br>
 from the BookList HashMap. <br>
 - A registerUser() method that takes inputs uid and user name and <br>
 creates User object, then pushes it into UserList HashMap - uid, user. <br>
-. <br>
 - A issueBook() method which takes in uid and book id, and adds the book id <br>
 with count+noOfCopies in BorrowedBooks HashMap of user object with matching uid - by <br>
 calling user object.borrrowBook(bid). Updates available copies of book object <br>
@@ -78,9 +76,9 @@ bookID and copies borrowed. <br>
 - Has parameterised constructor for uid and name. <br>
 - Has getters for name and uid. Has borrowBook(), returnBook() <br>
 and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
-- borrowBook() adds id, copies+1 to BooksBorrowed. <br>
-- returnBook() adds id, copies-1 to BooksBorrowed and if copies is <br>
-<=1 it removes the entry. <br>
+- borrowBook() adds id, count+noOfCopies to BooksBorrowed. <br>
+- returnBook() adds id, count-noOfCopies to BooksBorrowed and if count-noOfCopies <br>
+is == 0, it removes the entry. <br>
 - getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 
 
 ViewBooks.java :-

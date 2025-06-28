@@ -34,14 +34,10 @@ class User {
                 return 1;
             }
             else {
-                System.out.println("User does not have so many copies, not returned");
-                System.out.println();
-                return -1;
+                return 0;
             }
         }
         else {
-            System.out.println("User has not borrowed this book with id - " + id);
-            System.out.println();
             return -1;
         }
     }
