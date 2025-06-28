@@ -106,3 +106,7 @@ block inside searchedPanel.
 - Adds scrollpane with searchedPanel to SearchBooks JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to SearchBooks JPanel. <br>
 backButton switches contentPane to menuPanel.
+
+Add Later :-
+- Logging
+- Remove User
