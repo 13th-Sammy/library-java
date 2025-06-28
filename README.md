@@ -126,5 +126,6 @@ inside usersPanel. <br>
 backButton switches contentPane to menuPanel.
 
 Add Later :-
-- Logging
-- Remove User
+- Logging <br>
+- Remove User <br>
+- Change all collections with HashMap and avoid a couple for loops in the GUI files <br>
