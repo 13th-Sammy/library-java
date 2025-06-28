@@ -24,29 +24,17 @@ library as well as those of individual users.
 Main.java :-
 - This is the entry point for our program and has a main <br>
 function - main() creates a Menu object which launches the menu <br>
-that runs the program. {main() calls run() which runs the program. <br>
-- A printMenu() function prints the user menu. <br>
-- A run() function acts as the program runner. It has <br> 
-an infinite while loop. Inside, it calls printMenu() and <br>
-takes the user choice in variable choice. <br>
-If choice==0 > break out of loop and end program. <br>
-Else If choice==1 > calls viewBooks() <br>
-Else If choice==2 > calls addBook() <br>
-Else If choice==3 > calls removeBook() <br>
-Else If choice==4 > calls searchBook() <br>
-Else If choice==5 > calls registerUser() <br>
-Else If choice==6 > calls viewUser() <br>
-Else If choice==7 > calls viewAllUsers() <br>
-Else If choice==8 > calls issueBook() <br>
-Else If choice==9 > calls returnBookL()} <br>
+that runs the program.
 
 Menu.java :-
 - This creates the GUI menu with a button for each operation. <br>
-- Creates a menuPanel, setLayout, add buttons, add actionListener <br>
-for each button to pair it to an operation. <br>
+- Creates a Jframe frame. Inside it exists JPanel menuPanel.
+- menuPanel layout is set and a button corresponding to each Library <br>
+operation is placed inside menuPanel, inside frame.
 - If View Books clicked, shows ViewBooks panel <br>
 - If Add Book clicked, calls addBook() <br>
 - If Remove Book clicked, calls removeBook() <br>
+. <br>
 - If Search Book clicked, calls searchBook() <br>
 - If Register User clicked, calls registerUser() <br>
 - If View User clicked, calls viewUser() <br>
@@ -57,14 +45,13 @@ for each button to pair it to an operation. <br>
 Library.java :-
 - Has BookList HashMap to store all book Ids and Book objects. <br>
 - Has UserList HashMap to store all user IDs and User objects. <br>
-- {A viewBooks() method that iterates over BookList and prints <br>
-attributes of all books.} <br>
 - A getBookList() method that returns the values of HashMap id, book <br>
 as a Collection of Books.
 - An addBook() method takes inputs bookID, title and author, <br>
 creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
 from the BookList HashMap. <br>
+. <br>
 - A searchBook() method that takes in title as input, iterates over <br>
 BookList and prints attributes of Book if found. <br>
 - A registerUser() method that takes inputs uid and user name and <br>
@@ -101,8 +88,12 @@ viewBorrowed() and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
 - getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 
 
 ViewBooks.java :-
-- Handles the GUI for viewing books. It is a JPanel. <br>
-- Creates a bookPanel to hold each Book info in a block inside. <br>
+- Handles the GUI for viewing books. It is a JPanel. Inside it there are <br>
+more JPanels for showing different parts of the page as mentioned below. <br>
+- Creates a booksPanel inside ViewBooks JPanel. booksPanel will have <br>
+more Jpanels called blocks inside it. <br>
 - Iterates over Book collection and prints each book info in a block <br>
-inside bookPanel.
-- Has a back button to switch panel back to menuPanel. <br>
+inside booksPanel. <br>
+- Adds scrollpane to ViewBooks JPanel. <br>
+- Adds backButton to bottomPanel JPanel and adds that to ViewBooks JPanel. <br>
+backButton switches contentPane to menuPanel. 

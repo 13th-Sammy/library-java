@@ -20,8 +20,8 @@ class ViewBooks extends JPanel {
                 block.setBorder(BorderFactory.createTitledBorder("Book ID - " + b.getID()));
                 block.add(new JLabel("Title - " + b.getTitle()));
                 block.add(new JLabel("Author - " + b.getAuthor()));
-                block.add(new JLabel("Available Copies - " + b.getAvailCopies()));
                 block.add(new JLabel("Total Copies - " + b.getTotalCopies()));
+                block.add(new JLabel("Available Copies - " + b.getAvailCopies()));
                 booksPanel.add(block);
             }
         }
@@ -34,7 +34,6 @@ class ViewBooks extends JPanel {
             frame.revalidate();
             frame.repaint();
         });
-
         JPanel bottomPanel=new JPanel();
         bottomPanel.add(backBtn);
         add(bottomPanel, BorderLayout.SOUTH);

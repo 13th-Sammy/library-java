@@ -46,17 +46,13 @@ class Library {
         return ("Book Added successfully, Book ID - " + book.getID());
     }
 
-    public void removeBook() {
-        System.out.println("Enter Book ID to remove from System - ");
-        long ID=scan.nextLong();
+    public String removeBook(long ID) {
         if(BookList.containsKey(ID)) {
             BookList.remove(ID);
-            System.out.println("Book with ID " + ID + " removed from System permanently");
-            System.out.println();
+            return ("Book with ID " + ID + " removed from System permanently");
         }
         else {
-            System.out.println("No such Book ID exists.");
-            System.out.println();
+            return ("No such Book ID exists.");
         }
     }
 

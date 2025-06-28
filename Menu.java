@@ -33,7 +33,9 @@ class Menu {
 
         JButton remBookBtn=new JButton("Remove Book");
         remBookBtn.addActionListener(e -> {
-            lib.removeBook();
+            String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to remove from System - ");
+            long id=Long.parseLong(idStr);
+            lib.removeBook(id);
         });
         menuPanel.add(remBookBtn);
 
