@@ -4,13 +4,15 @@ class Logger {
     private static  final Logger instance=new Logger();
     private final ArrayList<String> logs=new ArrayList<>();
 
-    public void log(String s) {
-        String timestamp=java.time.LocalDateTime.now().toString().trim();
-        logs.add("[" + timestamp + "] " + s);
-    }
+    private Logger() {};
 
     public static Logger getInstance() {
         return instance;
+    }
+
+    public void log(String s) {
+        String timestamp=java.time.LocalDateTime.now().toString().trim();
+        logs.add("[" + timestamp + "] " + s);
     }
 
     public ArrayList<String> getLogs() {

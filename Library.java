@@ -6,11 +6,11 @@ class Library {
     private final Logger logger=Logger.getInstance();
 
     public HashMap<Long, Book> getBookList() {
-        return BookList;
+        return new HashMap<>(BookList);
     }
 
     public HashMap<Long, User> getUserList() {
-        return UserList;
+        return new HashMap<>(UserList);
     }
 
     public String addBook(long ID, String t, String a) {
