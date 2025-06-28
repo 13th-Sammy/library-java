@@ -7,4 +7,8 @@ class Logger {
         String timestamp=java.time.LocalDateTime.now().toString().trim();
         logs.add("[" + timestamp + "] " + s);
     }
+
+    public ArrayList<String> getLogs() {
+        return logs;
+    }
 }
