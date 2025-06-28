@@ -129,4 +129,3 @@ backButton switches contentPane to menuPanel.
 
 Add Later :-
 - Logging <br>
-- Remove User <br>
