@@ -154,3 +154,15 @@ Logger.java :-
 - Logger objects - which are the static instance are created in <br> 
 Library.java and Menu.java using Logger.getInstance() - to log all the different <br>
 operations with object.log(string). 
+
+# Implement SQL 
+
+Notes :-
+- library.db is the database, it has BookList, UserList, BorrowedBooks, Logs. <br>
+- User.java, Book.java, HashMaps BookList UserList no longer required. <br>
+- Logger internal logic change to SQL and no more ArrayList Logs. <br>
+- No change to logger.log statements. <br>
+
+Done :-
+
+To Do :-
