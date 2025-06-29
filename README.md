@@ -58,7 +58,7 @@ Library.java :-
 - An addBook() method takes inputs bookID, title and author, <br>
 creates Book object and pushes it into BookList HashMap - bookID, book <br>
 - A removeBook() method that asks for a bookID and removes that key <br>
-from the BookList HashMap. <br>
+from the BookList HashMap, if all books have been returned. <br>
 - A registerUser() method that takes inputs uid and user name and <br>
 creates User object, then pushes it into UserList HashMap - uid, user. <br>
 - A removeUser() method that takes uid as input and removes the user from <br>
@@ -138,7 +138,8 @@ Logger.java :-
 - Contains ArrayList of Strings - logs to store logs. <br>
 - Has a static object called instance and a getter for it - getInstance(). <br>
 - Has setter log() to add string to ArrayList logs. <br>
-- Has getLogs() which returns the ArrayList. <br>
+- Has getLogs() which returns the ArrayList. <br> 
+- Has clearLogs() which clears the ArrayList logs. <br>
 - Logger objects - which are the static instance are created in <br> 
 Library.java and Menu.java using Logger.getInstance() - to log all the different <br>
 operations with object.log(string). <br>

@@ -128,6 +128,7 @@ class Menu {
         JButton clearLogsBtn=new JButton("Clear All Logs");
         clearLogsBtn.addActionListener(e -> {
             logger.clearLogs();
+            logger.log("Logs Cleared");
         });
         menuPanel.add(clearLogsBtn);
 
