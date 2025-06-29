@@ -15,7 +15,7 @@ class Menu {
         
         JButton viewBooksBtn=new JButton("View Books");
         viewBooksBtn.addActionListener(e -> {
-            frame.setContentPane(new ViewBooks(frame, lib, menuPanel));
+            frame.setContentPane(new ViewBooks(frame, menuPanel));
             frame.revalidate();
             frame.repaint();
             logger.log("View Books");

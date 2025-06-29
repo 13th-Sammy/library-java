@@ -164,6 +164,7 @@ Notes :-
 - No change to logger.log statements. <br>
 
 Done :-
+- ViewBooks, change README left. <br>
 
 To Do :-
 - Change Logger class internal logic. <br>
