@@ -72,24 +72,6 @@ with count-noOfCopies in BorrowedBooks HashMap of user object with matching uid 
 calling user object.returnBook(bid). Updates available copies of book object <br>
 with matching bid. 
 
-Book.java :- <br>
-- Serves as the holder of all information regarding one book. <br>
-- Has attributes bookID, title, author, totalCopies, availCopies. <br>
-- Has parameterised constructor for bookID, title and author. <br>
-- Has getters for everything, and setters for totalCopies and availCopies.
-
-User.java :-
-- Serves as the holder of all information regarding one user. <br>
-- Has attributes uid, name, and a HashMap BooksBorrowed for <br>
-bookID and copies borrowed. <br>
-- Has parameterised constructor for uid and name. <br>
-- Has getters for name and uid. Has borrowBook(), returnBook() <br>
-and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
-- borrowBook() adds id, count+noOfCopies to BooksBorrowed. <br>
-- returnBook() adds id, count-noOfCopies to BooksBorrowed and if count-noOfCopies <br>
-is == 0, it removes the entry. <br>
-- getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 
-
 ViewBooks.java :-
 - Handles the GUI and logic for viewing books. It is a JPanel. Inside it there are <br>
 more JPanels for showing different parts of the page as mentioned below. <br>
@@ -134,16 +116,6 @@ inside usersPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to ViewAllUsers JPanel. <br>
 backButton switches contentPane to menuPanel. <br>
 
-Logger.java :-
-- Contains ArrayList of Strings - logs to store logs. <br>
-- Has a static object called instance and a getter for it - getInstance(). <br>
-- Has setter log() to add string to ArrayList logs. <br>
-- Has getLogs() which returns the ArrayList. <br> 
-- Has clearLogs() which clears the ArrayList logs. <br>
-- Logger objects - which are the static instance are created in <br> 
-Library.java and Menu.java using Logger.getInstance() - to log all the different <br>
-operations with object.log(string). <br>
-
 ViewLogs.java :-
 - Handles the GUI and logic for viewing logs. It is a Jpanel and has other Jpanels <br>
 inside it. <br>
@@ -154,3 +126,31 @@ inside JPanel ViewLogs. <br>
 - Adds scrollPane with logPanel to ViewLogs JPanel. <br>
 - Adds backButton to bottomPanel JPanel and adds that to ViewLogs JPanel. <br>
 backButton switches contentPane to menuPanel.
+
+Book.java :- <br>
+- Serves as the holder of all information regarding one book. <br>
+- Has attributes bookID, title, author, totalCopies, availCopies. <br>
+- Has parameterised constructor for bookID, title and author. <br>
+- Has getters for everything, and setters for totalCopies and availCopies.
+
+User.java :-
+- Serves as the holder of all information regarding one user. <br>
+- Has attributes uid, name, and a HashMap BooksBorrowed for <br>
+bookID and copies borrowed. <br>
+- Has parameterised constructor for uid and name. <br>
+- Has getters for name and uid. Has borrowBook(), returnBook() <br>
+and getBorrowedMap() regarding BooksBorrowed HashMap. <br>
+- borrowBook() adds id, count+noOfCopies to BooksBorrowed. <br>
+- returnBook() adds id, count-noOfCopies to BooksBorrowed and if count-noOfCopies <br>
+is == 0, it removes the entry. <br>
+- getBorrowedMap() to return a copy of the HashMap BooksBorrowed. 
+
+Logger.java :-
+- Contains ArrayList of Strings - logs to store logs. <br>
+- Has a static object called instance and a getter for it - getInstance(). <br>
+- Has setter log() to add string to ArrayList logs. <br>
+- Has getLogs() which returns the ArrayList. <br> 
+- Has clearLogs() which clears the ArrayList logs. <br>
+- Logger objects - which are the static instance are created in <br> 
+Library.java and Menu.java using Logger.getInstance() - to log all the different <br>
+operations with object.log(string). 
