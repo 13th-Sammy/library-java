@@ -164,7 +164,8 @@ Notes :-
 - No change to logger.log statements. <br>
 
 Done :-
-- ViewBooks, change README left. <br>
+- ViewBooks, change README left, panel and menu changed. <br>
+- addBooks, change README left, Library.java and menu changed. <br>
 
 To Do :-
 - Change Logger class internal logic. <br>

@@ -28,7 +28,9 @@ class Menu {
             long ID=Long.parseLong(idStr);
             String t=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
             String a=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
-            String res=lib.addBook(ID, t, a);
+            String cStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -").trim();
+            int c=Integer.parseInt(cStr);
+            String res=lib.addBook(ID, t, a, c);
             JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(addBookBtn);
