@@ -166,3 +166,4 @@ Notes :-
 Done :-
 
 To Do :-
+- Change Logger class internal logic. <br>
