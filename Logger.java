@@ -16,7 +16,7 @@ class Logger {
     }
 
     public ArrayList<String> getLogs() {
-        return logs;
+        return new ArrayList<>(logs);
     }
 
     public void clearLogs() {
