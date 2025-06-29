@@ -43,6 +43,10 @@ class Library {
 
     public String removeBook(long ID) {
         if(BookList.containsKey(ID)) {
+            if(BookList.get(ID).getAvailCopies()<BookList.get(ID).getTotalCopies()) {
+                logger.log("Remove Book - failure");
+                return ("All copies not returned, cannot remove Book");
+            }
             BookList.remove(ID);
             logger.log("Remove Book - success");
             return ("Book with ID " + ID + " removed from System permanently");
