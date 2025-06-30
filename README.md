@@ -172,6 +172,7 @@ Done :-
 - removeUser, change README left, Library.java and Menu.java changed. <br>
 - ViewUser, change README left, ViewUser.java and Menu.java changed. <br>
 - ViewAllUsers, change README left, ViewAllUsers.java and Menu.java changed. <br>
+- issueBooks, change README left, Library.java and Menu.java changed. <br>
 
 To Do :-
 - Change Logger class internal logic. <br>

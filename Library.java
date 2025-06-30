@@ -141,22 +141,47 @@ class Library {
     }
 
     public String issueBook(long uid, long bid, int noOfCopies) {
-        if(!UserList.containsKey(uid)) {
-            logger.log("Issue Book - failure");
-            return ("Uid does not exist");
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
+            try(Statement stmt=conn.createStatement()) {
+                stmt.execute("PRAGMA foreign_keys=ON"); 
+            }
+            String checkCopies="SELECT * FROM BookList where id=?";
+            try(PreparedStatement ps=conn.prepareStatement(checkCopies)) {
+                ps.setLong(1, bid);
+                try(ResultSet rs=ps.executeQuery()) {
+                    if(!rs.next()) {
+                        logger.log("Issue Book - failure");
+                        return ("No such book exists");
+                    }
+                    if(rs.getInt("available_copies")<noOfCopies) {
+                        logger.log("Issue Book - failure");
+                        return ("Not enough available copies");
+                    }
+                }
+            }
+            String issueBook="INSERT INTO BorrowedBooks (user_id, book_id, copies) VALUES (?,?,?) ON CONFLICT (user_id, book_id) DO UPDATE SET copies=copies+?";
+            try(PreparedStatement ps=conn.prepareStatement(issueBook)) {
+                ps.setLong(1, uid);
+                ps.setLong(2, bid);
+                ps.setLong(3, noOfCopies);
+                ps.setLong(4, noOfCopies);
+                ps.executeUpdate();
+            }
+            String remCopies="UPDATE BookList SET available_copies=available_copies-? WHERE id=?";
+            try(PreparedStatement ps=conn.prepareStatement(remCopies)) {
+                ps.setInt(1, noOfCopies);
+                ps.setLong(2, bid);
+                ps.executeUpdate();
+            }
+            logger.log("Issue Book - success");
+            return ("Book issued successfully");
+        } catch(SQLException e) {
+            if(e.getMessage().contains("SQLITE_CONSTRAINT_FOREIGNKEY")) {
+                logger.log("Issue Book - failure");
+                return ("No such user exists");
+            }
+            return ("Error - " + e.getMessage());
         }
-        if(!BookList.containsKey(bid)) {
-            logger.log("Issue Book - failure");
-            return ("Book ID does not exist");
-        }
-        if(BookList.get(bid).getAvailCopies()-noOfCopies<0) {
-            logger.log("Issue Book - failure");
-            return ("Not enough available copies");
-        }
-        BookList.get(bid).remAvailCopies(noOfCopies);
-        UserList.get(uid).borrowBook(bid, noOfCopies);
-        logger.log("Issue Book - success");
-        return ("Book successfully borrowed");
     }
 
     public String returnBookL(long uid, long bid, int noOfCopies) {

@@ -8,8 +8,8 @@ class ViewAllUsers extends JPanel {
         JPanel userPanel=new JPanel();
         userPanel.setLayout(new BoxLayout(userPanel, BoxLayout.Y_AXIS));
 
-        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
-            Statement stmt=conn.createStatement();
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db"); 
+            Statement stmt=conn.createStatement()) {
             try(ResultSet rs=stmt.executeQuery("SELECT * FROM UserList")) {
                 boolean foundUsers=false;
                 while(rs.next()) {
