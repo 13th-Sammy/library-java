@@ -1,19 +1,8 @@
 import java.sql.*;
-import java.util.HashMap;
 
 class Library {
-    private final HashMap<Long, Book> BookList=new HashMap<>();
-    private final HashMap<Long, User> UserList=new HashMap<>();
     private final Logger logger=Logger.getInstance();
-
-    public HashMap<Long, Book> getBookList() {
-        return new HashMap<>(BookList);
-    }
-
-    public HashMap<Long, User> getUserList() {
-        return new HashMap<>(UserList);
-    }
-
+    
     public String addBook(long id, String title, String author, int copies) {
         try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
             String checkTitleAuthor="SELECT * FROM BookList WHERE title=? and author=?";
