@@ -11,15 +11,17 @@ class ViewLogs extends JPanel {
         try(Connection conn=DriverManager.getConnection("jdbc:sqlite:logs.db");
             Statement st=conn.createStatement();
             ResultSet rs=st.executeQuery("SELECT * FROM Logs")) {
-            if(!rs.next()) {
-                JLabel noLogs=new JLabel("No Logs yet");
-                noLogs.setAlignmentX(Component.CENTER_ALIGNMENT);
-                logPanel.add(noLogs);
-            }
+            boolean hasLogs=false;
             while(rs.next()) {
+                hasLogs=true;
                 JLabel logline=new JLabel(rs.getLong("id") + " | " + rs.getString("message") + " | " + rs.getString("timestamp"));
                 logline.setAlignmentX(Component.CENTER_ALIGNMENT);
                 logPanel.add(logline);
+            }
+            if(!hasLogs) {
+                JLabel noLogs=new JLabel("No Logs yet");
+                noLogs.setAlignmentX(Component.CENTER_ALIGNMENT);
+                logPanel.add(noLogs);
             }
         } catch(SQLException e) {
             JLabel errorMsg=new JLabel("Error - " + e.getMessage());
