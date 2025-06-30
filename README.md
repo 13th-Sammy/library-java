@@ -166,6 +166,7 @@ Notes :-
 Done :-
 - ViewBooks, change README left, ViewBooks.java and Menu.java changed. <br>
 - addBooks, change README left, Library.java and Menu.java changed. <br>
+- remBooks, change README left, Library.java changed and Menu.java changed. <br>
 
 To Do :-
 - Change Logger class internal logic. <br>

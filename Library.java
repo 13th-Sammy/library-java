@@ -63,19 +63,34 @@ class Library {
         }
     }
 
-    public String removeBook(long ID) {
-        if(BookList.containsKey(ID)) {
-            if(BookList.get(ID).getAvailCopies()<BookList.get(ID).getTotalCopies()) {
-                logger.log("Remove Book - failure");
-                return ("All copies not returned, cannot remove Book");
+    public String removeBook(long id) {
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
+            String getBook="SELECT * FROM BookList WHERE id=?";
+            try(PreparedStatement ps1=conn.prepareStatement(getBook)) {
+                ps1.setLong(1, id);
+                ResultSet rs=ps1.executeQuery();
+                if(rs.next()) {
+                    int totalCopies=rs.getInt("total_copies");
+                    int availableCopies=rs.getInt("available_copies");
+                    if(availableCopies<totalCopies) {
+                        logger.log("Remove Book - failure");
+                        return ("All copies not returned, cannot remove Book");
+                    }
+                    String remBook="DELETE FROM BookList WHERE id=?";
+                    try(PreparedStatement ps2=conn.prepareStatement(remBook)) {
+                        ps2.setLong(1, id);
+                        ps2.executeUpdate();
+                        logger.log("Remove Book - success");
+                        return ("Book with ID " + id + " removed from System permanently");
+                    }
+                }
+                else {
+                    logger.log("Remove Book - failure");
+                    return ("No such book exists");
+                }
             }
-            BookList.remove(ID);
-            logger.log("Remove Book - success");
-            return ("Book with ID " + ID + " removed from System permanently");
-        }
-        else {
-            logger.log("Remove Book - failure");
-            return ("No such Book ID exists.");
+        } catch(SQLException e) {
+            return ("Error - " + e.getMessage());
         }
     }
 
