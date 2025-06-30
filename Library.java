@@ -88,15 +88,22 @@ class Library {
     }
 
     public String registerUser(long uid, String name) {
-        if(UserList.containsKey(uid)) {
-            logger.log("Register User - failure");
-            return ("Uid already exists, user not added");
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
+            String regUser="INSERT INTO UserList VALUES (?, ?)";
+            try(PreparedStatement ps=conn.prepareStatement(regUser)) {
+                ps.setLong(1, uid);
+                ps.setString(2, name);
+                ps.executeUpdate();
+            }
+            logger.log("Register User - success");
+            return ("User registered successfully, Uid - " + uid);
+        } catch(SQLException e) {
+            if(e.getMessage().contains("SQLITE_CONSTRAINT_PRIMARYKEY")) {
+                logger.log("Register User - failure");
+                return ("Different Users cannot have same ID, not added");
+            }
+            return ("Error - " + e.getMessage());
         }
-
-        User user=new User(uid, name);
-        UserList.put(user.getUid(), user);
-        logger.log("Register User - success");
-        return ("User added successfully, Uid - " + user.getUid());
     }
 
     public String removeUser(long uid) {
