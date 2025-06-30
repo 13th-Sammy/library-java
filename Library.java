@@ -107,20 +107,36 @@ class Library {
     }
 
     public String removeUser(long uid) {
-        if(UserList.containsKey(uid)) {
-            if(UserList.get(uid).getBorrowedMap().isEmpty()) {
-                UserList.remove(uid);
-                logger.log("Remove User - success");
-                return ("User with ID " + uid + " removed from System permanently");
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
+            String checkBorrowed="SELECT user_id FROM BorrowedBooks WHERE user_id=?";
+            try(PreparedStatement ps=conn.prepareStatement(checkBorrowed)) {
+                ps.setLong(1, uid);
+                try(ResultSet rs=ps.executeQuery()) {
+                    if(rs.next()) {
+                        logger.log("Remove User - failure");
+                        return ("User has not returned all books, cannot remove");
+                    }
+                }
             }
-            else {
-                logger.log("Remove User - failure");
-                return ("User has not returned all books, cannot remove");
+            String checkExist="SELECT * FROM UserList WHERE id=?";
+            try(PreparedStatement ps=conn.prepareStatement(checkExist)) {
+                ps.setLong(1, uid);
+                try(ResultSet rs=ps.executeQuery()) {
+                    if(!rs.next()) {
+                        logger.log("Remove Book - failure");
+                        return ("No such book exists");
+                    }
+                }
             }
-        }
-        else {
-            logger.log("Remove User - failure");
-            return ("No such user exists");
+            String remUser="DELETE FROM UserList WHERE id=?";
+            try(PreparedStatement ps=conn.prepareStatement(remUser)) {
+                ps.setLong(1, uid);
+                ps.executeUpdate();
+            }
+            logger.log("Remove User - success");
+            return ("User with ID " + uid + " removed from System permanently");
+        } catch(SQLException e) {
+            return ("Error - " + e.getMessage());
         }
     }
 
