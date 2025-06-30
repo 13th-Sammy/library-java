@@ -12,22 +12,23 @@ class SearchBooks extends JPanel {
             String searchTitle="SELECT * FROM BookList WHERE title LIKE '%' || ? || '%' COLLATE NOCASE";
             try(PreparedStatement ps=conn.prepareStatement(searchTitle)) {
                 ps.setString(1, title);
-                ResultSet rs=ps.executeQuery();
-                boolean found=false;
-                while(rs.next()) {
-                    found=true;
-                    JPanel block=new JPanel(new GridLayout(0,1));
-                    block.setBorder(BorderFactory.createTitledBorder("Book ID - " + rs.getLong("id")));
-                    block.add(new JLabel("Title - " + rs.getString("title")));
-                    block.add(new JLabel("Author - " + rs.getString("author")));
-                    block.add(new JLabel("Total Copies - " + rs.getInt("total_copies")));
-                    block.add(new JLabel("Available Copies - " + rs.getInt("available_copies")));
-                    searchedPanel.add(block);
-                }
-                if(found==false) {
-                    JLabel notFound=new JLabel("No such book exists");
-                    notFound.setAlignmentX(Component.CENTER_ALIGNMENT);
-                    searchedPanel.add(notFound);
+                try(ResultSet rs=ps.executeQuery()) {
+                    boolean found=false;
+                    while(rs.next()) {
+                        found=true;
+                        JPanel block=new JPanel(new GridLayout(0,1));
+                        block.setBorder(BorderFactory.createTitledBorder("Book ID - " + rs.getLong("id")));
+                        block.add(new JLabel("Title - " + rs.getString("title")));
+                        block.add(new JLabel("Author - " + rs.getString("author")));
+                        block.add(new JLabel("Total Copies - " + rs.getInt("total_copies")));
+                        block.add(new JLabel("Available Copies - " + rs.getInt("available_copies")));
+                        searchedPanel.add(block);
+                    }
+                    if(found==false) {
+                        JLabel notFound=new JLabel("No such book exists");
+                        notFound.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        searchedPanel.add(notFound);
+                    }
                 }
             }
         } catch(SQLException e) {

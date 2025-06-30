@@ -20,30 +20,32 @@ class Library {
             try(PreparedStatement ps=conn.prepareStatement(checkTitleAuthor)) {
                 ps.setString(1, title);
                 ps.setString(2, author);
-                ResultSet rs=ps.executeQuery();
-                if(rs.next()) {
-                    long existingId=rs.getLong("id");
-                    String updateQuery="UPDATE BookList SET total_copies=total_copies+?, available_copies=available_copies+? WHERE id=?";
-                    try(PreparedStatement updateStmt=conn.prepareStatement(updateQuery)) {
-                        updateStmt.setInt(1, copies);
-                        updateStmt.setInt(2, copies);
-                        updateStmt.setLong(3, existingId);
-                        updateStmt.executeUpdate();
+                try(ResultSet rs=ps.executeQuery()) {
+                    if(rs.next()) {
+                        long existingId=rs.getLong("id");
+                        String updateQuery="UPDATE BookList SET total_copies=total_copies+?, available_copies=available_copies+? WHERE id=?";
+                        try(PreparedStatement updateStmt=conn.prepareStatement(updateQuery)) {
+                            updateStmt.setInt(1, copies);
+                            updateStmt.setInt(2, copies);
+                            updateStmt.setLong(3, existingId);
+                            updateStmt.executeUpdate();
+                        }
+                        logger.log("Add Book - success");
+                        return ("Same title and author, added to existing book ID");
                     }
-                    logger.log("Add Book - success");
-                    return ("Same title and author, added to existing book ID");
                 }
             }
             String checkId="SELECT * FROM BookList WHERE id=?";
             try(PreparedStatement ps=conn.prepareStatement(checkId)) {
                 ps.setLong(1, id);
-                ResultSet rs=ps.executeQuery();
-                if(rs.next()) {
-                    String existingTitle=rs.getString("title");
-                    String existingAuthor=rs.getString("author");
-                    if(!existingTitle.equalsIgnoreCase(title) || !existingAuthor.equalsIgnoreCase(author)) {
-                        logger.log("Add Book - failure");
-                        return ("Different books cannot have same id, not added");
+                try(ResultSet rs=ps.executeQuery()) {
+                    if(rs.next()) {
+                        String existingTitle=rs.getString("title");
+                        String existingAuthor=rs.getString("author");
+                        if(!existingTitle.equalsIgnoreCase(title) || !existingAuthor.equalsIgnoreCase(author)) {
+                            logger.log("Add Book - failure");
+                            return ("Different books cannot have same id, not added");
+                        }
                     }
                 }
             }
@@ -68,25 +70,26 @@ class Library {
             String getBook="SELECT * FROM BookList WHERE id=?";
             try(PreparedStatement ps1=conn.prepareStatement(getBook)) {
                 ps1.setLong(1, id);
-                ResultSet rs=ps1.executeQuery();
-                if(rs.next()) {
-                    int totalCopies=rs.getInt("total_copies");
-                    int availableCopies=rs.getInt("available_copies");
-                    if(availableCopies<totalCopies) {
+                try(ResultSet rs=ps1.executeQuery()) {
+                    if(rs.next()) {
+                        int totalCopies=rs.getInt("total_copies");
+                        int availableCopies=rs.getInt("available_copies");
+                        if(availableCopies<totalCopies) {
+                            logger.log("Remove Book - failure");
+                            return ("All copies not returned, cannot remove Book");
+                        }
+                        String remBook="DELETE FROM BookList WHERE id=?";
+                        try(PreparedStatement ps2=conn.prepareStatement(remBook)) {
+                            ps2.setLong(1, id);
+                            ps2.executeUpdate();
+                            logger.log("Remove Book - success");
+                            return ("Book with ID " + id + " removed from System permanently");
+                        }
+                    }
+                    else {
                         logger.log("Remove Book - failure");
-                        return ("All copies not returned, cannot remove Book");
+                        return ("No such book exists");
                     }
-                    String remBook="DELETE FROM BookList WHERE id=?";
-                    try(PreparedStatement ps2=conn.prepareStatement(remBook)) {
-                        ps2.setLong(1, id);
-                        ps2.executeUpdate();
-                        logger.log("Remove Book - success");
-                        return ("Book with ID " + id + " removed from System permanently");
-                    }
-                }
-                else {
-                    logger.log("Remove Book - failure");
-                    return ("No such book exists");
                 }
             }
         } catch(SQLException e) {
