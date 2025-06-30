@@ -123,8 +123,8 @@ class Library {
                 ps.setLong(1, uid);
                 try(ResultSet rs=ps.executeQuery()) {
                     if(!rs.next()) {
-                        logger.log("Remove Book - failure");
-                        return ("No such book exists");
+                        logger.log("Remove User - failure");
+                        return ("No such user exists");
                     }
                 }
             }
