@@ -82,9 +82,9 @@ class Library {
                         try(PreparedStatement ps2=conn.prepareStatement(remBook)) {
                             ps2.setLong(1, id);
                             ps2.executeUpdate();
-                            logger.log("Remove Book - success");
-                            return ("Book with ID " + id + " removed from System permanently");
                         }
+                        logger.log("Remove Book - success");
+                        return ("Book with ID " + id + " removed from System permanently");
                     }
                     else {
                         logger.log("Remove Book - failure");
