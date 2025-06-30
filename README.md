@@ -154,3 +154,31 @@ Logger.java :-
 - Logger objects - which are the static instance are created in <br> 
 Library.java and Menu.java using Logger.getInstance() - to log all the different <br>
 operations with object.log(string). 
+
+# Implement SQL 
+
+Notes :-
+- library.db is the database, it has BookList, UserList, BorrowedBooks, Logs. <br>
+- User.java, Book.java, HashMaps BookList UserList no longer required. <br>
+- Logger internal logic change to SQL and no more ArrayList Logs. <br>
+- No change to logger.log statements. 
+
+Done :-
+- ViewBooks, change README left, ViewBooks.java and Menu.java changed. <br>
+- addBooks, change README left, Library.java and Menu.java changed. <br>
+- remBooks, change README left, Library.java changed and Menu.java changed. <br>
+- searchBooks, change README left, SearchBooks.java and Menu.java changed. <br>
+- registerUser, change README left, Library.java and Menu.java changed. <br>
+- removeUser, change README left, Library.java and Menu.java changed. <br>
+- ViewUser, change README left, ViewUser.java and Menu.java changed. <br>
+- ViewAllUsers, change README left, ViewAllUsers.java and Menu.java changed. <br>
+- issueBooks, change README left, Library.java and Menu.java changed. <br>
+- returnBooks, change README left, Library.java and Menu.java changed. <br>
+- Logging (viewLogs and clearLogs) implemented, change README left, Logger.java, <br>
+ViewLogs.java and Menu.java changed, logs.db added. 
+
+
+To Do :-
+- Change Logger class internal logic. <br>
+- CLEAN UP CODE. <br>
+- All done except updating this README. It will not be updated further. 

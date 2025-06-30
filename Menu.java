@@ -15,7 +15,7 @@ class Menu {
         
         JButton viewBooksBtn=new JButton("View Books");
         viewBooksBtn.addActionListener(e -> {
-            frame.setContentPane(new ViewBooks(frame, lib, menuPanel));
+            frame.setContentPane(new ViewBooks(frame, menuPanel));
             frame.revalidate();
             frame.repaint();
             logger.log("View Books");
@@ -25,10 +25,12 @@ class Menu {
         JButton addBookBtn=new JButton("Add Book");
         addBookBtn.addActionListener(e -> {
             String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -").trim();
-            long ID=Long.parseLong(idStr);
-            String t=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
-            String a=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
-            String res=lib.addBook(ID, t, a);
+            long id=Long.parseLong(idStr);
+            String title=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
+            String author=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
+            String copiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -").trim();
+            int copies=Integer.parseInt(copiesStr);
+            String res=lib.addBook(id, title, author, copies);
             JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(addBookBtn);
@@ -45,7 +47,7 @@ class Menu {
         JButton searchBookBtn=new JButton("Search Book");
         searchBookBtn.addActionListener(e-> {
             String title=JOptionPane.showInputDialog(menuPanel, "Enter Title to Search -").trim();
-            frame.setContentPane(new SearchBooks(frame, lib, menuPanel, title));
+            frame.setContentPane(new SearchBooks(frame, menuPanel, title));
             frame.revalidate();
             frame.repaint();
             logger.log("Search Book");
@@ -75,7 +77,7 @@ class Menu {
         viewUserBtn.addActionListener(e-> {
             String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
             long uid=Long.parseLong(uidStr);
-            frame.setContentPane(new ViewUser(frame, lib, menuPanel, uid));
+            frame.setContentPane(new ViewUser(frame, menuPanel, uid));
             frame.revalidate();
             frame.repaint();
             logger.log("View User");
@@ -84,7 +86,7 @@ class Menu {
 
         JButton viewAllUsersBtn=new JButton("View All Users");
         viewAllUsersBtn.addActionListener(e -> {
-            frame.setContentPane(new ViewAllUsers(frame, lib, menuPanel));
+            frame.setContentPane(new ViewAllUsers(frame, menuPanel));
             frame.revalidate();
             frame.repaint();
             logger.log("View All Users");
@@ -112,14 +114,15 @@ class Menu {
             long bid=Long.parseLong(bidStr);
             String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to return -").trim();
             int noOfCopies=Integer.parseInt(noOfCopiesStr);
-            String res=lib.returnBookL(uid, bid, noOfCopies);
+            String res=lib.returnBook(uid, bid, noOfCopies);
             JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(returnBookBtn);
 
         JButton viewLogsBtn=new JButton("View Logs");
         viewLogsBtn.addActionListener(e -> {
-            frame.setContentPane(new ViewLogs(frame, logger, menuPanel));
+            logger.log("View Logs");
+            frame.setContentPane(new ViewLogs(frame, menuPanel));
             frame.revalidate();
             frame.repaint();
         });

@@ -1,25 +1,31 @@
-import java.util.ArrayList;
+import java.sql.*;
 
 class Logger {
-    private static  final Logger instance=new Logger();
-    private final ArrayList<String> logs=new ArrayList<>();
+    private static Logger instance=new Logger();
 
-    private Logger() {};
+    private Logger() {}
 
-    public static Logger getInstance() {
+    public static synchronized Logger getInstance() {
+        if(instance==null) {
+            instance=new Logger();
+        }
         return instance;
     }
 
     public void log(String s) {
-        String timestamp=java.time.LocalDateTime.now().toString().trim();
-        logs.add("[" + timestamp + "] " + s);
-    }
-
-    public ArrayList<String> getLogs() {
-        return new ArrayList<>(logs);
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:logs.db")) {
+            String insertLog="INSERT INTO Logs (message) VALUES (?)";
+            try(PreparedStatement ps=conn.prepareStatement(insertLog)) {
+                ps.setString(1, s);
+                ps.executeUpdate();
+            }
+        } catch(SQLException e) {}
     }
 
     public void clearLogs() {
-        logs.clear();
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:logs.db");
+            Statement st=conn.createStatement()) {
+            st.executeUpdate("DELETE FROM Logs"); 
+        } catch(SQLException e) {}
     }
 }
