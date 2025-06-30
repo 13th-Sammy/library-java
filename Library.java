@@ -185,29 +185,77 @@ class Library {
     }
 
     public String returnBookL(long uid, long bid, int noOfCopies) {
-        if(!UserList.containsKey(uid)) {
-            logger.log("Return Book - failure");
-            return ("Uid does not exist");
-        }
-        if(!BookList.containsKey(bid)) {
-            logger.log("Return Book - failure");
-            return ("Book ID does not exist");
-        }
-        int res=UserList.get(uid).returnBook(bid, noOfCopies);
-        switch (res) {
-            case 1 -> {
-                BookList.get(bid).addAvailCopies(noOfCopies);
-                logger.log("Return Book - success");
-                return ("Book sucessfully returned");
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
+            try(Statement stmt=conn.createStatement()) {
+                stmt.execute("PRAGMA foreign_keys=ON"); 
             }
-            case 0 -> {
-                logger.log("Return Book - failure");
-                return ("User does not have so many copies, not returned");
+            String checkBookExist="SELECT * FROM BookList WHERE id=?";
+            try(PreparedStatement ps=conn.prepareStatement(checkBookExist)) {
+                ps.setLong(1, bid);
+                try(ResultSet rs=ps.executeQuery()) {
+                    if(!rs.next()) {
+                        logger.log("Return Book - failed");
+                        return ("No such book exists");
+                    }
+                }
             }
-            default -> {
-                logger.log("Return Book - failure");
-                return ("User has not borrowed this book with id - " + bid);
+            String checkUserExist="SELECT * FROM UserList WHERE id=?";
+            try(PreparedStatement ps=conn.prepareStatement(checkUserExist)) {
+                ps.setLong(1, uid);
+                try(ResultSet rs=ps.executeQuery()) {
+                    if(!rs.next()) {
+                        logger.log("Return Book - failed");
+                        return ("No such user exists");
+                    }
+                }
             }
+            String checkBook="SELECT * FROM BorrowedBooks WHERE user_id=? AND book_id=?";
+            try(PreparedStatement ps=conn.prepareStatement(checkBook)) {
+                ps.setLong(1, uid);
+                ps.setLong(2, bid);
+                try(ResultSet rs=ps.executeQuery()) {
+                    if(!rs.next()) {
+                        logger.log("Return Book - failed");
+                        return ("User has not borrowed this book with id - " + bid);
+                    }
+                    if(rs.getInt("copies")<noOfCopies) {
+                        logger.log("Return Book - failed");
+                        return ("User does not have so many copies, not returned");
+                    }
+                }
+            }
+            String retBook="UPDATE BorrowedBooks SET copies=copies-? WHERE user_id=? AND book_id=?";
+            try(PreparedStatement ps2=conn.prepareStatement(retBook)) {
+                ps2.setInt(1, noOfCopies);
+                ps2.setLong(2, uid);
+                ps2.setLong(3, bid);
+                ps2.executeUpdate();
+            }
+            String checkBook2="SELECT * FROM BorrowedBooks WHERE user_id=? AND book_id=?";
+            try(PreparedStatement ps2=conn.prepareStatement(checkBook2)) {
+                ps2.setLong(1, uid);
+                ps2.setLong(2, bid);
+                try(ResultSet rs2=ps2.executeQuery()) {
+                    if(rs2.getInt("copies")==0) {
+                        String delBook="DELETE FROM BorrowedBooks WHERE user_id=? AND book_id=?";
+                        try(PreparedStatement ps3=conn.prepareStatement(delBook)) {
+                            ps3.setLong(1, uid);
+                            ps3.setLong(2, bid);
+                            ps3.executeUpdate();
+                        }
+                    }
+                }
+            }
+            String updateBook="UPDATE BookList SET available_copies=available_copies+? WHERE id=?";
+            try(PreparedStatement ps2=conn.prepareStatement(updateBook)) {
+                ps2.setInt(1, noOfCopies);
+                ps2.setLong(2, bid);
+                ps2.executeUpdate();
+            }
+            logger.log("Return Book - success");
+            return ("Book returned successfully");
+        } catch(SQLException e) {
+            return ("Error - " + e.getMessage());
         }
     }
 }
