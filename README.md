@@ -170,6 +170,8 @@ Done :-
 - searchBooks, change README left, SearchBooks.java and Menu.java changed. <br>
 - registerUser, change README left, Library.java and Menu.java changed. <br>
 - removeUser, change README left, Library.java and Menu.java changed. <br>
+- ViewUser, change README left, ViewUser.java and Menu.java changed. <br>
+- ViewAllUsers, change README left, ViewAllUsers.java and Menu.java changed. <br>
 
 To Do :-
 - Change Logger class internal logic. <br>

@@ -77,7 +77,7 @@ class Menu {
         viewUserBtn.addActionListener(e-> {
             String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
             long uid=Long.parseLong(uidStr);
-            frame.setContentPane(new ViewUser(frame, lib, menuPanel, uid));
+            frame.setContentPane(new ViewUser(frame, menuPanel, uid));
             frame.revalidate();
             frame.repaint();
             logger.log("View User");
@@ -86,7 +86,7 @@ class Menu {
 
         JButton viewAllUsersBtn=new JButton("View All Users");
         viewAllUsersBtn.addActionListener(e -> {
-            frame.setContentPane(new ViewAllUsers(frame, lib, menuPanel));
+            frame.setContentPane(new ViewAllUsers(frame, menuPanel));
             frame.revalidate();
             frame.repaint();
             logger.log("View All Users");
