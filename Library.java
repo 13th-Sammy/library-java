@@ -14,19 +14,19 @@ class Library {
         return new HashMap<>(UserList);
     }
 
-    public String addBook(long ID, String t, String a, int c) {
+    public String addBook(long id, String title, String author, int copies) {
         try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
             String checkTitleAuthor="SELECT * FROM BookList WHERE title=? and author=?";
             try(PreparedStatement ps=conn.prepareStatement(checkTitleAuthor)) {
-                ps.setString(1, t);
-                ps.setString(2, a);
+                ps.setString(1, title);
+                ps.setString(2, author);
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()) {
                     long existingId=rs.getLong("id");
                     String updateQuery="UPDATE BookList SET total_copies=total_copies+?, available_copies=available_copies+? WHERE id=?";
                     try(PreparedStatement updateStmt=conn.prepareStatement(updateQuery)) {
-                        updateStmt.setInt(1, c);
-                        updateStmt.setInt(2, c);
+                        updateStmt.setInt(1, copies);
+                        updateStmt.setInt(2, copies);
                         updateStmt.setLong(3, existingId);
                         updateStmt.executeUpdate();
                     }
@@ -36,12 +36,12 @@ class Library {
             }
             String checkId="SELECT * FROM BookList WHERE id=?";
             try(PreparedStatement ps=conn.prepareStatement(checkId)) {
-                ps.setLong(1, ID);
+                ps.setLong(1, id);
                 ResultSet rs=ps.executeQuery();
                 if(rs.next()) {
                     String existingTitle=rs.getString("title");
                     String existingAuthor=rs.getString("author");
-                    if(!existingTitle.equalsIgnoreCase(t) || !existingAuthor.equalsIgnoreCase(a)) {
+                    if(!existingTitle.equalsIgnoreCase(title) || !existingAuthor.equalsIgnoreCase(author)) {
                         logger.log("Add Book - failure");
                         return ("Different books cannot have same id, not added");
                     }
@@ -49,11 +49,11 @@ class Library {
             }
             String insertQuery="INSERT INTO BookList (id, title, author, total_copies, available_copies) VALUES (?,?,?,?,?)";
             try(PreparedStatement insertStmt=conn.prepareStatement(insertQuery)) {
-                insertStmt.setLong(1, ID);
-                insertStmt.setString(2, t);
-                insertStmt.setString(3, a);
-                insertStmt.setInt(4, c);
-                insertStmt.setInt(5, c);
+                insertStmt.setLong(1, id);
+                insertStmt.setString(2, title);
+                insertStmt.setString(3, author);
+                insertStmt.setInt(4, copies);
+                insertStmt.setInt(5, copies);
                 insertStmt.executeUpdate();
             }
             logger.log("Add Book - success");

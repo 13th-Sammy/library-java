@@ -25,12 +25,12 @@ class Menu {
         JButton addBookBtn=new JButton("Add Book");
         addBookBtn.addActionListener(e -> {
             String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -").trim();
-            long ID=Long.parseLong(idStr);
-            String t=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
-            String a=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
-            String cStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -").trim();
-            int c=Integer.parseInt(cStr);
-            String res=lib.addBook(ID, t, a, c);
+            long id=Long.parseLong(idStr);
+            String title=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
+            String author=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
+            String copiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -").trim();
+            int copies=Integer.parseInt(copiesStr);
+            String res=lib.addBook(id, title, author, copies);
             JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(addBookBtn);
