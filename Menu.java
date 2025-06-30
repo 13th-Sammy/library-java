@@ -122,7 +122,7 @@ class Menu {
         JButton viewLogsBtn=new JButton("View Logs");
         viewLogsBtn.addActionListener(e -> {
             logger.log("View Logs");
-            frame.setContentPane(new ViewLogs(frame, logger, menuPanel));
+            frame.setContentPane(new ViewLogs(frame, menuPanel));
             frame.revalidate();
             frame.repaint();
         });

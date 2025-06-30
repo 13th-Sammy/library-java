@@ -1,25 +1,30 @@
 import java.awt.*;
-import java.util.ArrayList;
+import java.sql.*;
 import javax.swing.*;
 
 class ViewLogs extends JPanel {
-    public ViewLogs(JFrame frame, Logger logger, JPanel menuPanel) {
+    public ViewLogs(JFrame frame, JPanel menuPanel) {
         setLayout(new BorderLayout());
         JPanel logPanel=new JPanel();
         logPanel.setLayout(new BoxLayout(logPanel, BoxLayout.Y_AXIS));
-        ArrayList<String> logs=new ArrayList<>(logger.getLogs());
 
-        if(logs.isEmpty()) {
-            JLabel noLogs=new JLabel("No Logs yet");
-            noLogs.setAlignmentX(Component.CENTER_ALIGNMENT);
-            logPanel.add(noLogs);
-        }
-        else {
-            for(String s:logs) {
-                JLabel logLine=new JLabel(s);
-                logLine.setAlignmentX(Component.CENTER_ALIGNMENT);
-                logPanel.add(logLine);
-            }   
+        try(Connection conn=DriverManager.getConnection("jdbc:sqlite:logs.db");
+            Statement st=conn.createStatement();
+            ResultSet rs=st.executeQuery("SELECT * FROM Logs")) {
+            if(!rs.next()) {
+                JLabel noLogs=new JLabel("No Logs yet");
+                noLogs.setAlignmentX(Component.CENTER_ALIGNMENT);
+                logPanel.add(noLogs);
+            }
+            while(rs.next()) {
+                JLabel logline=new JLabel(rs.getLong("id") + " | " + rs.getString("message") + " | " + rs.getString("timestamp"));
+                logline.setAlignmentX(Component.CENTER_ALIGNMENT);
+                logPanel.add(logline);
+            }
+        } catch(SQLException e) {
+            JLabel errorMsg=new JLabel("Error - " + e.getMessage());
+            errorMsg.setAlignmentX(Component.CENTER_ALIGNMENT);
+            logPanel.add(errorMsg);
         }
         JScrollPane scrollPane=new JScrollPane(logPanel);
         add(scrollPane, BorderLayout.CENTER);

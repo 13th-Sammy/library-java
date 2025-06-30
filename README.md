@@ -161,7 +161,7 @@ Notes :-
 - library.db is the database, it has BookList, UserList, BorrowedBooks, Logs. <br>
 - User.java, Book.java, HashMaps BookList UserList no longer required. <br>
 - Logger internal logic change to SQL and no more ArrayList Logs. <br>
-- No change to logger.log statements. <br>
+- No change to logger.log statements. 
 
 Done :-
 - ViewBooks, change README left, ViewBooks.java and Menu.java changed. <br>
@@ -174,7 +174,11 @@ Done :-
 - ViewAllUsers, change README left, ViewAllUsers.java and Menu.java changed. <br>
 - issueBooks, change README left, Library.java and Menu.java changed. <br>
 - returnBooks, change README left, Library.java and Menu.java changed. <br>
+- Logging implemented, change README left, Logger.java, ViewLogs.java and <br> 
+Menu.java changed, logs.db added. 
+
 
 To Do :-
 - Change Logger class internal logic. <br>
-- CLEAN UP CODE.
+- CLEAN UP CODE. <br>
+- All done except updating this README. It will not be updated further. 
