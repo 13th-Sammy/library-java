@@ -9,7 +9,7 @@ class SearchBooks extends JPanel {
         searchedPanel.setLayout(new BoxLayout(searchedPanel, BoxLayout.Y_AXIS));
 
         try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
-            String searchTitle="SELECT * FROM BookList WHERE title=? COLLATE NOCASE";
+            String searchTitle="SELECT * FROM BookList WHERE title LIKE '%' || ? || '%' COLLATE NOCASE";
             try(PreparedStatement ps=conn.prepareStatement(searchTitle)) {
                 ps.setString(1, title);
                 ResultSet rs=ps.executeQuery();
