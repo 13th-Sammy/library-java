@@ -47,7 +47,7 @@ class Menu {
         JButton searchBookBtn=new JButton("Search Book");
         searchBookBtn.addActionListener(e-> {
             String title=JOptionPane.showInputDialog(menuPanel, "Enter Title to Search -").trim();
-            frame.setContentPane(new SearchBooks(frame, lib, menuPanel, title));
+            frame.setContentPane(new SearchBooks(frame, menuPanel, title));
             frame.revalidate();
             frame.repaint();
             logger.log("Search Book");
