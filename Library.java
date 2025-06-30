@@ -35,20 +35,6 @@ class Library {
                     }
                 }
             }
-            String checkId="SELECT * FROM BookList WHERE id=?";
-            try(PreparedStatement ps=conn.prepareStatement(checkId)) {
-                ps.setLong(1, id);
-                try(ResultSet rs=ps.executeQuery()) {
-                    if(rs.next()) {
-                        String existingTitle=rs.getString("title");
-                        String existingAuthor=rs.getString("author");
-                        if(!existingTitle.equalsIgnoreCase(title) || !existingAuthor.equalsIgnoreCase(author)) {
-                            logger.log("Add Book - failure");
-                            return ("Different books cannot have same id, not added");
-                        }
-                    }
-                }
-            }
             String insertQuery="INSERT INTO BookList (id, title, author, total_copies, available_copies) VALUES (?,?,?,?,?)";
             try(PreparedStatement insertStmt=conn.prepareStatement(insertQuery)) {
                 insertStmt.setLong(1, id);
@@ -61,6 +47,10 @@ class Library {
             logger.log("Add Book - success");
             return ("Book Added Successfully");
         } catch (SQLException e) {
+            if(e.getMessage().contains("SQLITE_CONSTRAINT_PRIMARYKEY")) {
+                logger.log("Add Book - failure");
+                return ("Different Books cannot have same ID, not added");
+            }
             return ("Error - " + e.getMessage());
         }
     }
