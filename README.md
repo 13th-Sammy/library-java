@@ -174,8 +174,8 @@ Done :-
 - ViewAllUsers, change README left, ViewAllUsers.java and Menu.java changed. <br>
 - issueBooks, change README left, Library.java and Menu.java changed. <br>
 - returnBooks, change README left, Library.java and Menu.java changed. <br>
-- Logging implemented, change README left, Logger.java, ViewLogs.java and <br> 
-Menu.java changed, logs.db added. 
+- Logging (viewLogs and clearLogs) implemented, change README left, Logger.java, <br>
+ViewLogs.java and Menu.java changed, logs.db added. 
 
 
 To Do :-
