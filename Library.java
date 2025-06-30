@@ -175,9 +175,6 @@ class Library {
 
     public String returnBookL(long uid, long bid, int noOfCopies) {
         try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
-            try(Statement stmt=conn.createStatement()) {
-                stmt.execute("PRAGMA foreign_keys=ON"); 
-            }
             String checkBookExist="SELECT * FROM BookList WHERE id=?";
             try(PreparedStatement ps=conn.prepareStatement(checkBookExist)) {
                 ps.setLong(1, bid);
