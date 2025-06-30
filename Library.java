@@ -173,7 +173,7 @@ class Library {
         }
     }
 
-    public String returnBookL(long uid, long bid, int noOfCopies) {
+    public String returnBook(long uid, long bid, int noOfCopies) {
         try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
             String checkBookExist="SELECT * FROM BookList WHERE id=?";
             try(PreparedStatement ps=conn.prepareStatement(checkBookExist)) {

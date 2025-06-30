@@ -114,7 +114,7 @@ class Menu {
             long bid=Long.parseLong(bidStr);
             String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to return -").trim();
             int noOfCopies=Integer.parseInt(noOfCopiesStr);
-            String res=lib.returnBookL(uid, bid, noOfCopies);
+            String res=lib.returnBook(uid, bid, noOfCopies);
             JOptionPane.showMessageDialog(menuPanel, res);
         });
         menuPanel.add(returnBookBtn);
