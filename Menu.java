@@ -26,17 +26,17 @@ class Menu {
         addBookBtn.addActionListener(e -> {
             try {
                 String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -");
-                if (idStr==null) return;
+                if (idStr==null || idStr.trim().isEmpty()) return;
                 idStr=idStr.trim();
                 long id=Long.parseLong(idStr);
                 String title=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -");
-                if(title==null) return;
+                if(title==null || title.trim().isEmpty()) return;
                 title=title.trim();
                 String author=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -");
-                if(author==null) return;
+                if(author==null || author.trim().isEmpty()) return;
                 author=author.trim();
                 String copiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -");
-                if(copiesStr==null) return;
+                if(copiesStr==null || copiesStr.trim().isEmpty()) return;
                 copiesStr=copiesStr.trim();
                 int copies=Integer.parseInt(copiesStr);
                 String res=lib.addBook(id, title, author, copies);
@@ -51,7 +51,7 @@ class Menu {
         remBookBtn.addActionListener(e -> {
             try {
                 String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to remove from System -");
-                if(idStr==null) return;
+                if(idStr==null || idStr.trim().isEmpty()) return;
                 idStr=idStr.trim();
                 long id=Long.parseLong(idStr);
                 String res=lib.removeBook(id);
@@ -66,7 +66,7 @@ class Menu {
         searchBookBtn.addActionListener(e-> {
             try {
                 String title=JOptionPane.showInputDialog(menuPanel, "Enter Title to Search -");
-                if(title==null) return;
+                if(title==null || title.trim().isEmpty()) return;
                 title=title.trim();
                 frame.setContentPane(new SearchBooks(frame, menuPanel, title));
                 frame.revalidate();
@@ -82,11 +82,11 @@ class Menu {
         regUserBtn.addActionListener(e -> {
             try {
                 String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID -");
-                if(uidStr==null) return;
+                if(uidStr==null || uidStr.trim().isEmpty()) return;
                 uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
                 String name=JOptionPane.showInputDialog(menuPanel, "Enter User Name -");
-                if(name==null) return;
+                if(name==null || name.trim().isEmpty()) return;
                 name=name.trim();
                 String res=lib.registerUser(uid, name);
                 JOptionPane.showMessageDialog(menuPanel, res);
@@ -100,7 +100,7 @@ class Menu {
         remUserBtn.addActionListener(e -> {
             try {
                 String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID to remove from System -");
-                if(uidStr==null) return;
+                if(uidStr==null || uidStr.trim().isEmpty()) return;
                 uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
                 String res=lib.removeUser(uid);
@@ -115,7 +115,7 @@ class Menu {
         viewUserBtn.addActionListener(e-> {
             try {
                 String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -");
-                if(uidStr==null) return;
+                if(uidStr==null || uidStr.trim().isEmpty()) return;
                 uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
                 frame.setContentPane(new ViewUser(frame, menuPanel, uid));
@@ -141,15 +141,15 @@ class Menu {
         issueBookBtn.addActionListener(e-> {
             try {
                 String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -");
-                if(uidStr==null) return;
+                if(uidStr==null || uidStr.trim().isEmpty()) return;
                 uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
                 String bidStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to borrow -");
-                if(bidStr==null) return;
+                if(bidStr==null || bidStr.trim().isEmpty()) return;
                 bidStr=bidStr.trim();
                 long bid=Long.parseLong(bidStr);
                 String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to borrow -");
-                if(noOfCopiesStr==null) return;
+                if(noOfCopiesStr==null || noOfCopiesStr.trim().isEmpty()) return;
                 noOfCopiesStr=noOfCopiesStr.trim();
                 int noOfCopies=Integer.parseInt(noOfCopiesStr);
                 String res=lib.issueBook(uid, bid, noOfCopies);
@@ -164,15 +164,15 @@ class Menu {
         returnBookBtn.addActionListener(e -> {
             try {
                 String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -");
-                if(uidStr==null) return;
+                if(uidStr==null || uidStr.trim().isEmpty()) return;
                 uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
                 String bidStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to return -");
-                if(bidStr==null) return;
+                if(bidStr==null || bidStr.trim().isEmpty()) return;
                 bidStr=bidStr.trim();
                 long bid=Long.parseLong(bidStr);
                 String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to return -");
-                if(noOfCopiesStr==null) return;
+                if(noOfCopiesStr==null || noOfCopiesStr.trim().isEmpty()) return;
                 noOfCopiesStr=noOfCopiesStr.trim();
                 int noOfCopies=Integer.parseInt(noOfCopiesStr);
                 String res=lib.returnBook(uid, bid, noOfCopies);
