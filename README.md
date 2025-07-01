@@ -7,6 +7,8 @@ The User can add or remove books, issue books to Users <br>
 and keep track of all transactions, and the state of the <br>
 library as well as those of individual users.
 
+It uses java swing for GUI and SQLite for persistent storage.
+
 # Features 
 
 - View Books <br>
