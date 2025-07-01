@@ -18,7 +18,7 @@ class ViewLogs extends JPanel {
                 logline.setAlignmentX(Component.CENTER_ALIGNMENT);
                 logPanel.add(logline);
             }
-            if(!hasLogs) {
+            if(hasLogs==false) {
                 JLabel noLogs=new JLabel("No Logs yet");
                 noLogs.setAlignmentX(Component.CENTER_ALIGNMENT);
                 logPanel.add(noLogs);
