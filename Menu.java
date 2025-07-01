@@ -25,28 +25,38 @@ class Menu {
         JButton addBookBtn=new JButton("Add Book");
         addBookBtn.addActionListener(e -> {
             try {
-                String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -").trim();
+                String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -");
+                if (idStr==null) return;
+                idStr=idStr.trim();
                 long id=Long.parseLong(idStr);
-                String title=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
-                String author=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
-                String copiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -").trim();
+                String title=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -");
+                if(title==null) return;
+                title=title.trim();
+                String author=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -");
+                if(author==null) return;
+                author=author.trim();
+                String copiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -");
+                if(copiesStr==null) return;
+                copiesStr=copiesStr.trim();
                 int copies=Integer.parseInt(copiesStr);
                 String res=lib.addBook(id, title, author, copies);
                 JOptionPane.showMessageDialog(menuPanel, res);
-            } catch(IllegalArgumentException er) {
+            } catch(NumberFormatException er) {
                 JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
-            }
+            } 
         });
         menuPanel.add(addBookBtn);
 
         JButton remBookBtn=new JButton("Remove Book");
         remBookBtn.addActionListener(e -> {
             try {
-                String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to remove from System -").trim();
+                String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to remove from System -");
+                if(idStr==null) return;
+                idStr=idStr.trim();
                 long id=Long.parseLong(idStr);
                 String res=lib.removeBook(id);
                 JOptionPane.showMessageDialog(menuPanel, res);
-            } catch(IllegalArgumentException er) {
+            } catch(NumberFormatException er) {
                 JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
             }
         });
@@ -55,12 +65,14 @@ class Menu {
         JButton searchBookBtn=new JButton("Search Book");
         searchBookBtn.addActionListener(e-> {
             try {
-                String title=JOptionPane.showInputDialog(menuPanel, "Enter Title to Search -").trim();
+                String title=JOptionPane.showInputDialog(menuPanel, "Enter Title to Search -");
+                if(title==null) return;
+                title=title.trim();
                 frame.setContentPane(new SearchBooks(frame, menuPanel, title));
                 frame.revalidate();
                 frame.repaint();
                 logger.log("Search Book");
-            } catch(IllegalArgumentException er) {
+            } catch(NumberFormatException er) {
                 JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
             }
         });
@@ -69,12 +81,16 @@ class Menu {
         JButton regUserBtn=new JButton("Register User");
         regUserBtn.addActionListener(e -> {
             try {
-                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID -").trim();
+                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID -");
+                if(uidStr==null) return;
+                uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
-                String name=JOptionPane.showInputDialog(menuPanel, "Enter User Name -").trim();
+                String name=JOptionPane.showInputDialog(menuPanel, "Enter User Name -");
+                if(name==null) return;
+                name=name.trim();
                 String res=lib.registerUser(uid, name);
                 JOptionPane.showMessageDialog(menuPanel, res);
-            } catch(IllegalArgumentException er) {
+            } catch(NumberFormatException er) {
                 JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
             }
         });
@@ -83,11 +99,13 @@ class Menu {
         JButton remUserBtn=new JButton("Remove User");
         remUserBtn.addActionListener(e -> {
             try {
-                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID to remove from System -").trim();
+                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter User ID to remove from System -");
+                if(uidStr==null) return;
+                uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
                 String res=lib.removeUser(uid);
                 JOptionPane.showMessageDialog(menuPanel, res);
-            } catch(IllegalArgumentException er) {
+            } catch(NumberFormatException er) {
                 JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
             }
         });
@@ -96,13 +114,15 @@ class Menu {
         JButton viewUserBtn=new JButton("View User");
         viewUserBtn.addActionListener(e-> {
             try {
-                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
+                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -");
+                if(uidStr==null) return;
+                uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
                 frame.setContentPane(new ViewUser(frame, menuPanel, uid));
                 frame.revalidate();
                 frame.repaint();
                 logger.log("View User");
-            } catch(IllegalArgumentException er) {
+            } catch(NumberFormatException er) {
                 JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
             }
         });
@@ -120,15 +140,21 @@ class Menu {
         JButton issueBookBtn=new JButton("Issue Book");
         issueBookBtn.addActionListener(e-> {
             try {
-                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
+                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -");
+                if(uidStr==null) return;
+                uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
-                String bidStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to borrow -").trim();
+                String bidStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to borrow -");
+                if(bidStr==null) return;
+                bidStr=bidStr.trim();
                 long bid=Long.parseLong(bidStr);
-                String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to borrow -").trim();
+                String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to borrow -");
+                if(noOfCopiesStr==null) return;
+                noOfCopiesStr=noOfCopiesStr.trim();
                 int noOfCopies=Integer.parseInt(noOfCopiesStr);
                 String res=lib.issueBook(uid, bid, noOfCopies);
                 JOptionPane.showMessageDialog(menuPanel, res);
-            } catch(IllegalArgumentException er) {
+            } catch(NumberFormatException er) {
                 JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
             }
         });
@@ -137,15 +163,21 @@ class Menu {
         JButton returnBookBtn=new JButton("Return Book");
         returnBookBtn.addActionListener(e -> {
             try {
-                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -").trim();
+                String uidStr=JOptionPane.showInputDialog(menuPanel, "Enter Uid -");
+                if(uidStr==null) return;
+                uidStr=uidStr.trim();
                 long uid=Long.parseLong(uidStr);
-                String bidStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to return -").trim();
+                String bidStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID to return -");
+                if(bidStr==null) return;
+                bidStr=bidStr.trim();
                 long bid=Long.parseLong(bidStr);
-                String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to return -").trim();
+                String noOfCopiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies to return -");
+                if(noOfCopiesStr==null) return;
+                noOfCopiesStr=noOfCopiesStr.trim();
                 int noOfCopies=Integer.parseInt(noOfCopiesStr);
                 String res=lib.returnBook(uid, bid, noOfCopies);
                 JOptionPane.showMessageDialog(menuPanel, res);
-            } catch(IllegalArgumentException er) {
+            } catch(NumberFormatException er) {
                 JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
             }
         });
