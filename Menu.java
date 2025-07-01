@@ -64,17 +64,13 @@ class Menu {
 
         JButton searchBookBtn=new JButton("Search Book");
         searchBookBtn.addActionListener(e-> {
-            try {
-                String title=JOptionPane.showInputDialog(menuPanel, "Enter Title to Search -");
-                if(title==null || title.trim().isEmpty()) return;
-                title=title.trim();
-                frame.setContentPane(new SearchBooks(frame, menuPanel, title));
-                frame.revalidate();
-                frame.repaint();
-                logger.log("Search Book");
-            } catch(NumberFormatException er) {
-                JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
-            }
+            String title=JOptionPane.showInputDialog(menuPanel, "Enter Title to Search -");
+            if(title==null || title.trim().isEmpty()) return;
+            title=title.trim();
+            frame.setContentPane(new SearchBooks(frame, menuPanel, title));
+            frame.revalidate();
+            frame.repaint();
+            logger.log("Search Book");
         });
         menuPanel.add(searchBookBtn);
 
