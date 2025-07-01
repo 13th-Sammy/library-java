@@ -24,14 +24,18 @@ class Menu {
 
         JButton addBookBtn=new JButton("Add Book");
         addBookBtn.addActionListener(e -> {
-            String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -").trim();
-            long id=Long.parseLong(idStr);
-            String title=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
-            String author=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
-            String copiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -").trim();
-            int copies=Integer.parseInt(copiesStr);
-            String res=lib.addBook(id, title, author, copies);
-            JOptionPane.showMessageDialog(menuPanel, res);
+            try {
+                String idStr=JOptionPane.showInputDialog(menuPanel, "Enter Book ID -").trim();
+                long id=Long.parseLong(idStr);
+                String title=JOptionPane.showInputDialog(menuPanel, "Enter Book Name -").trim();
+                String author=JOptionPane.showInputDialog(menuPanel, "Enter Author Name -").trim();
+                String copiesStr=JOptionPane.showInputDialog(menuPanel, "Enter number of copies -").trim();
+                int copies=Integer.parseInt(copiesStr);
+                String res=lib.addBook(id, title, author, copies);
+                JOptionPane.showMessageDialog(menuPanel, res);
+            } catch(IllegalArgumentException er) {
+                JOptionPane.showMessageDialog(menuPanel, "Invalid Input");
+            }
         });
         menuPanel.add(addBookBtn);
 

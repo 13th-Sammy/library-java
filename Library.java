@@ -5,7 +5,7 @@ class Library {
     
     public String addBook(long id, String title, String author, int copies) {
         try(Connection conn=DriverManager.getConnection("jdbc:sqlite:library.db")) {
-            String checkTitleAuthor="SELECT * FROM BookList WHERE title=? and author=?";
+            String checkTitleAuthor="SELECT * FROM BookList WHERE title=? COLLATE NOCASE and author=? COLLATE NOCASE";
             try(PreparedStatement ps=conn.prepareStatement(checkTitleAuthor)) {
                 ps.setString(1, title);
                 ps.setString(2, author);
