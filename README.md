@@ -22,6 +22,14 @@ library as well as those of individual users.
 - View Logs <br>
 - Clear All Logs 
 
+# Run
+
+- Go to the directory /bin. <br>
+- If on linux, click run.sh. <br>
+- If on windows, click run.bat. <br>
+- Note that all other files in /bin need to be there <br>
+for the app to run properly. 
+
 # Project Structure
 
 Databases :-
